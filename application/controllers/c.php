@@ -7,6 +7,11 @@ class C extends MYController {
 	{
 		$this->data['content_body'] = $this->load->view('index', null, true);
 	}
+	
+	
+	public function detail() {
+		$this->data['content_body'] = $this->load->view('detail', null, true);
+	}
 }
 
 /* End of file c.php */

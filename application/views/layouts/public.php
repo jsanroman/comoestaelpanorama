@@ -6,10 +6,8 @@
 	<meta name="Robots" content="index,follow">
 
 	<link href="<?php echo base_url() ?>css/style.css" rel="stylesheet" type="text/css" media="screen" title="default">
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo base_url() ?>js/fancybox/jquery.fancybox-1.3.4.css" />
 
-	<script language="javascript" type="text/javascript" src="<?php echo base_url() ?>js/jquery-1.4.4.min.js"></script>
-	<script language="javascript" type="text/javascript" src="<?php echo base_url() ?>js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+	<script language="javascript" type="text/javascript" src="<?php echo base_url() ?>js/jquery-1.6.min.js"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo base_url() ?>js/common.js"></script>
 
 	<title></title>

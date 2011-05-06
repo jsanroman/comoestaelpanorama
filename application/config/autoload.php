@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('moto');
+$autoload['model'] = array('ccaa','localidad','provincia','dato');
 
 
 /* End of file autoload.php */

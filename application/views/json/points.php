@@ -3,9 +3,16 @@
 $data_json = '';
 foreach ($points as $p) {
 
+	
+	if(!$p->paro) $p->paro = 0;
+	if(!$p->ofertas) $p->ofertas = 0;
+	
+	
 	$data_json .= '{nombre: "'.$p->nombre.'sdlkjfhskjdfhlsjdh",
 				 lat:'.$p->lat.',
-				 lng:'.$p->lng.'
+				 lng:'.$p->lng.',
+				 paro:'.$p->paro.',
+				 ofertas:'.$p->ofertas.'
 				},';
 
 }

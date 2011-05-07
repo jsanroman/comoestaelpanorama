@@ -9,9 +9,11 @@ class json extends MYController {
 		if(!$zoom || !$lat_ne || !$lng_ne || !$lat_sw || !$lng_sw || $zoom<8) {
 			$points = $this->ccaa->get_ccaa();
 		} else {
-			$points = null;
-		}
 
+			$points = $this->localidad->get_localidades($lat_ne, $lng_ne, $lat_sw, $lng_sw);
+			
+
+		}
 
 		$this->data['content_body'] = $this->load->view('json/points', array('points'=>$points), true);
 	}

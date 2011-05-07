@@ -15,7 +15,11 @@ CircleOverlay.prototype = new google.maps.OverlayView();
 CircleOverlay.prototype.onAdd = function() {
 	var width = 300;
 	var a = document.createElement("a");
-	a.innerHTML = "P:12541<br/>O:2151";
+
+//	alert(this.point_.paro);
+	
+	
+	a.innerHTML = "P:"+this.point_.paro+"<br/>O:"+this.point_.ofertas;
 	a.href = "http://www.google.com";
 	a.className = 'pto1';
 	a = CircleOverlay.update_attributes_a(a, 20, width, this.getMap().getZoom());
@@ -126,13 +130,10 @@ var map = {
 
 		map.deleteOverlays();
 
-//		
 		save_ne = new google.maps.LatLng(map.map.getBounds().getNorthEast().lat() + 0.3, map.map.getBounds().getNorthEast().lng() + 0.3); 
 		save_se = new google.maps.LatLng(map.map.getBounds().getSouthWest() .lat() - 0.3, map.map.getBounds().getSouthWest().lng() - 0.3);
 		map.bounds = new google.maps.LatLngBounds(save_se, save_ne);
 
-//		public function points($lat_ne=null, $lng_ne=null, $lat_sw=null, $lng_sw=null, $zoom=null)
-//		var zoom = this.getMap().getZoom();
 
 		$.ajax({
 			type: 'get',  
@@ -145,15 +146,18 @@ var map = {
 			success: function(data) {
 				try {
 					points = eval(data);
-	
+
 					for(var i=0;i<points.length;i++) {
-						
+
+//						alert('hay ptos:'+points[i].nombre);
+
 						var pos_marker = new google.maps.LatLng(points[i].lat, points[i].lng); 
 						var bounds = new google.maps.LatLngBounds(pos_marker, pos_marker);
 						map.overlays.push(new CircleOverlay(bounds, map.map, points[i])); 			
 	
 					}
 				} catch (e) {
+					alert('no hay ptos');
 				}
 			}
 		});	

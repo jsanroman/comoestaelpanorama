@@ -39,6 +39,7 @@ class Curl {
 	
 	public function open_https_url_file($url) {
 
+		echo $url."\r\n";
 		$filename = basename($url);
 		$year = substr($filename, -8,2);
 		$month= substr($filename, -6,2);

@@ -111,8 +111,7 @@ class dato extends CI_Model {
 		if (isset($best_name)){
 			$name = $best_name;
 			unset($best_name);
-			$localidad_id = $this->localidad->search_generic(strtolower($name));
-			print_r($localidad_id);	
+			$localidad_id = $this->localidad->search_generic(strtolower($name));				
 			$localidad_id = $localidad_id[0]->id;
 		} else {
 			$localidad_id = $this->localidad->search_location(strtolower($name));	

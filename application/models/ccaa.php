@@ -22,23 +22,27 @@ class ccaa extends generic_model {
 	}
 
 	public function get_ccaa() {
-		$data = $this->get_generic('all');
+		$ccaa = $this->get_generic('all');
 		$retval = null;
-		foreach ($data as $p) {
-//			print_r($p);
-			$datos = $this->dato->get_dato($month, $year, null, $p->id);
-			foreach ($datos as $d) {				
+		foreach ($ccaa as $ca) {
+
+			$datos = $this->dato->get_dato($month, $year, null, $ca->id);
+			foreach ($datos as $d) {
 //				print_r($d);			
 				switch ($d->tipo_dato) {
 					case DATO_PARO:
-						$p->paro = $d->dato;
+						$ca->paro = $d->dato;
 						break;
-					case DATO_OFERTAS:
-						$p->ofertas = $d->dato;
-						break;
+//					case DATO_OFERTAS:
+//						$p->ofertas = $d->dato;
+//						break;
 				}
 			}
-			$retval[] = $p;
+
+
+			$ca->ofertas = $this->ofertas->get_num_ofertas(null, $ca->id, $ca->nombre);
+
+			$retval[] = $ca;
 		}
 		return $retval;
 	}

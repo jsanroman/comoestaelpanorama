@@ -57,6 +57,15 @@ define('PATH_TEMP', '/tmp/');
 define('DATO_PARO', 1);
 define('DATO_CONTRATOS', 2);
 define('DATO_OFERTAS', 3);
+define('DATO_OFERTAS_ESPANHA', 4);
+
+
+/** Cada 7 días volvemos a consultar ofertas*/
+define('MILISECONDS_REGENERATE_JOBS', 604800);
+//define('MILISECONDS_REGENERATE_JOBS', 1800);
+
+
+
 
 
 /* End of file constants.php */

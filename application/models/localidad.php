@@ -55,17 +55,15 @@ class localidad extends generic_model {
 
 		$Q = $this->db->query($query);
 
-		$data = $Q->result();
+		$locations = $Q->result();
 
 		$Q->free_result();
 
 		$retval = null;
 
-		foreach ($data as $p) {
+		foreach ($locations as $l) {
 
-//			print_r($p);
-			
-			$datos = $this->dato->get_dato($month, $year, $p->id, null);
+			$datos = $this->dato->get_dato($month, $year, $l->id, null);
 
 			foreach ($datos as $d) {
 				
@@ -73,17 +71,18 @@ class localidad extends generic_model {
 				
 				switch ($d->tipo_dato) {
 					case DATO_PARO:
-						$p->paro = $d->dato;
+						$l->paro = $d->dato;
 						break;
-					case DATO_OFERTAS:
-						$p->ofertas = $d->dato;
-						break;
+//					case DATO_OFERTAS:
+//						$p->ofertas = $d->dato;
+//						break;
 				}
 			}
 
-			$retval[] = $p;
-		}
+			$l->ofertas = $this->ofertas->get_num_ofertas($l->id, null, $l->nombre);
 
+			$retval[] = $l;
+		}
 
 		return $retval;
 	}

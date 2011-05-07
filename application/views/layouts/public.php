@@ -17,21 +17,27 @@
 	var url_base = "<?php echo base_url();?>";
 	</script>
 
+	<link href='http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' type='text/css'/>
+
 	<title></title>
 </head>
 
-<body id="home">
-	<div><?php echo flash_msg() ?></div>
+<body>
 
-	<?php echo $header; ?>
+	<div id="container">
 
+		<div><?php echo flash_msg() ?></div>
+	
+		<?php echo $header; ?>
+	
+	
+		<div class="container">
+			<?php echo $content_body; ?>
+		</div>
+	
+		<?php echo $footer; ?>
 
-	<div class="container">
-		<?php echo $content_body; ?>
 	</div>
-
-	<?php echo $footer; ?>
-
 
 <p><br />Page rendered in {elapsed_time} seconds</p>
 

@@ -1,8 +1,40 @@
 @CHARSET "UTF-8";
 
+body {
+	background-image: url("../images/fondo.jpg");
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+
+
+h1, h2 { 
+	font-family: 'Annie Use Your Telescope', arial, serif;
+	font-size: 70px;
+	margin:0px;
+	padding:0px;
+	color: #ec6d06;
+	margin-left:29px;
+}
+
+h2{
+	font-size: 20px !important;
+	color: #555;
+	margin-top:-30px;
+	padding-left:25px;
+}
+
+
+#container {
+	margin: auto;
+	width: 960px;
+	height: 800px;
+	margin-top: 30px;
+}
 
 #map_canvas {
-
+	margin-top:30px;
+	position: relative !important;
 	width: 800px;
 	height: 500px !important;
 }

@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class ccaa extends CI_Model {
+class ccaa extends generic_model {
 	
 	var $id = 0;
 	var $nombre = '';
@@ -10,20 +10,18 @@ class ccaa extends CI_Model {
 
 	public function __construct()
 	{
-		parent::__construct();
+		parent::__construct('ccaa');
+	}
+	
+	public function insert_ccaa($nombre, $lat, $lng){
+		return $this->insert_generic($nombre, $lat, $lng);		
 	}
 
-
-	public function get_ccaa() {
-
-		$query = 'SELECT id, nombre, puntuacion, lat, lng FROM ccaa';
-
-		$Q = $this->db->query($query);
-
-		$data = $Q->result();
-
-		$Q->free_result();
-
-		return $data;
+	public function modify_ccaa($array_info){
+		return $this->modify_generic($array_info);		
 	}
+
+	public function get_ccaa($id) {
+		return $this->get_generic($id);
+	}	
 }

@@ -43,5 +43,11 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('URL_REDTRABAJA', 'https://www.redtrabaja.es/');
 define('GOOGLE_GEOCODE', 'http://maps.google.com/maps/api/geocode/');
 
+ /*
+  * ESTRUCTURA DE DATOS 
+  */
+
+define('PATH_TEMP', '/tmp/');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

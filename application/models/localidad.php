@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class localidad extends CI_Model {
+class localidad extends generic_model {
 	
 	var $id = 0;
 	var $nombre = '';
@@ -12,9 +12,19 @@ class localidad extends CI_Model {
 
 	public function __construct()
 	{
-		parent::__construct();
+		parent::__construct('localidad');
 	}
 
+	public function insert_localidad($nombre, $lat, $lng){
+		return $this->insert_generic($nombre, $lat, $lng);		
+	}
 
+	public function modify_localidad($array_info){
+		return $this->modify_generic($array_info);		
+	}
+
+	public function get_localidad($id) {
+		return $this->get_generic($id);
+	}	
 
 }

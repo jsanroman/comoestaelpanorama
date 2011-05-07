@@ -36,7 +36,8 @@ class ParserXlsParadosContratos {
 				$file_name = $curl->open_https_url_file($link);
 
 				$data = new Spreadsheet_Excel_Reader($file_name); 
-
+				
+				//$this->ci->
 				echo "Obtenido ".$data->val(4,'B').'/'.$data->val(4,'J').'\r\n';
 
 			}

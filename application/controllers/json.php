@@ -6,7 +6,7 @@ class json extends MYController {
 
 	public function ccaa()
 	{
-		$ccaa = $this->ccaa->get_ccaa();
+		$ccaa = $this->ccaa->get_ccaa('all');
 		
 		$this->data['content_body'] = $this->load->view('json/ccaa', array('ccaa'=>$ccaa), true);
 	}

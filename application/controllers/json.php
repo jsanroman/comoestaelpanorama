@@ -4,11 +4,16 @@ class json extends MYController {
 
 	var $layout = 'layouts/json.php';
 
-	public function ccaa()
+	public function points($lat_ne=null, $lng_ne=null, $lat_sw=null, $lng_sw=null, $zoom=null)
 	{
-		$ccaa = $this->ccaa->get_ccaa();
-		
-		$this->data['content_body'] = $this->load->view('json/ccaa', array('ccaa'=>$ccaa), true);
+		if(!$zoom || !$lat_ne || !$lng_ne || !$lat_sw || !$lng_sw || $zoom<8) {
+			$points = $this->ccaa->get_ccaa();
+		} else {
+			$points = null;
+		}
+
+
+		$this->data['content_body'] = $this->load->view('json/points', array('points'=>$points), true);
 	}
 
 

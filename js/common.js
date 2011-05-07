@@ -21,7 +21,7 @@ CircleOverlay.prototype.onAdd = function() {
 	
 	a.innerHTML = "P:"+this.point_.paro+"<br/>O:"+this.point_.ofertas;
 	a.href = "http://www.google.com";
-	a.className = 'pto1';
+	a.className = 'pto '+this.point_.styleClass;
 	a = CircleOverlay.update_attributes_a(a, 20, width, this.getMap().getZoom());
 
 	this.width_ = width;
@@ -43,32 +43,30 @@ CircleOverlay.prototype.draw = function() {
 	// Retrieve the southwest and northeast coordinates of this overlay
 	// in latlngs and convert them to pixels coordinates.
 	// We'll use these coordinates to resize the DIV.
-	var sw = overlayProjection
-			.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-	var ne = overlayProjection
-			.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+	var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+	var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
 
-	var zoom = this.getMap().getZoom();
+//	var zoom = this.getMap().getZoom();
+//
+//	if (zoom < 7) {
+//		this.width_ = 75;
+//		this.a_ = CircleOverlay.update_attributes_a(this.a_, 10, this.width_);
+//	} else if (zoom < 8) {
+//		this.width_ = 100;
+//		this.a_ = CircleOverlay.update_attributes_a(this.a_, 12, this.width_);
+//	} else if (zoom < 10) {
+//		this.width_ = 200;
+//		this.a_ = CircleOverlay.update_attributes_a(this.a_, 15, this.width_);
+//	} else if (zoom < 11) {
+//		this.width_ = 250;
+//		this.a_ = CircleOverlay.update_attributes_a(this.a_, 18, this.width_);
+//	} else if (zoom > 10) {
+//		this.width_ = 300;
+//		this.a_ = CircleOverlay.update_attributes_a(this.a_, 20, this.width_);
+//	}
 
-	if (zoom < 7) {
-		this.width_ = 75;
-		this.a_ = CircleOverlay.update_attributes_a(this.a_, 10, this.width_);
-	} else if (zoom < 8) {
-		this.width_ = 100;
-		this.a_ = CircleOverlay.update_attributes_a(this.a_, 12, this.width_);
-	} else if (zoom < 10) {
-		this.width_ = 200;
-		this.a_ = CircleOverlay.update_attributes_a(this.a_, 15, this.width_);
-	} else if (zoom < 11) {
-		this.width_ = 250;
-		this.a_ = CircleOverlay.update_attributes_a(this.a_, 18, this.width_);
-	} else if (zoom > 10) {
-		this.width_ = 300;
-		this.a_ = CircleOverlay.update_attributes_a(this.a_, 20, this.width_);
-	}
-
-	this.a_.style.left = sw.x - (this.width_ / 2) + 'px';
-	this.a_.style.top = ne.y - (this.width_ / 2) + 'px';
+	this.a_.style.left = sw.x - (this.a_.size / 2) + 'px';
+	this.a_.style.top = ne.y - (this.a_.size / 2) + 'px';
 };
 
 CircleOverlay.prototype.onRemove = function() {
@@ -79,7 +77,10 @@ CircleOverlay.update_attributes_a = function(a, fontSize, size, zoom) {
 
 	size_p = a.innerHTML.length;
 	size = size_p * 2.5 * (zoom * 0.15);
+	a.size = size;
 
+	this.width_ = size;
+	
 	a.style.width = size + "px";
 	a.style.height = (size / 3) * 2 + "px";
 

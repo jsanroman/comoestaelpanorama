@@ -24,6 +24,34 @@ class ccaa extends CI_Model {
 
 		$Q->free_result();
 
-		return $data;
+		
+		$retval = null;
+
+		foreach ($data as $p) {
+
+//			print_r($p);
+			
+
+			$datos = $this->dato->get_dato($month, $year, null, $p->id);
+
+			foreach ($datos as $d) {
+				
+//				print_r($d);
+				
+				switch ($d->tipo_dato) {
+					case DATO_PARO:
+						$p->paro = $d->dato;
+						break;
+					case DATO_OFERTAS:
+						$p->ofertas = $d->dato;
+						break;
+				}
+			}
+
+			$retval[] = $p;
+		}
+
+
+		return $retval;		
 	}
 }

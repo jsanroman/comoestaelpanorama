@@ -31,6 +31,7 @@ class localidad extends CI_Model {
 				lng >= '.$lng_sw.' AND 
 				d.mes="'.$month.'" AND 
 				d.anho="'.$year.'" 
+		LIMIT 30
 		';
 
 		log_message('debug','-------------------------------------------------------------------------------------------------------------------------');

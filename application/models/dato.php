@@ -53,7 +53,7 @@ class dato extends CI_Model {
 	public function get_dato($month, $year, $localidad_id, $ccaa_id, $tipo_dato) {
 		
 		$query = '
-		SELECT * 
+		SELECT SUM(dato) as dato, tipo_dato  
 		FROM dato  
 		WHERE 	1=1 ';
 		
@@ -76,6 +76,8 @@ class dato extends CI_Model {
 		if($tipo_dato) {
 			$query .= 'AND tipo_dato="'.$tipo_dato.'"';
 		}
+
+		$query .= ' GROUP BY tipo_dato ';
 
 
 		log_message('debug','-------------------------------------------------------------------------------------------------------------------------');

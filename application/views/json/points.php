@@ -22,7 +22,8 @@ foreach ($points as $p) {
 				 lng:'.$p->lng.',
 				 paro:'.$p->paro.',
 				 ofertas:'.$p->ofertas.',
-				 styleClass:"'.$styleClass.'"
+				 styleClass:"'.$styleClass.'",
+				 href:"'.base_url().'/c/detail/'.$p->id.'"
 				},';
 }
 

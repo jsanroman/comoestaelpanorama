@@ -20,7 +20,7 @@ CircleOverlay.prototype.onAdd = function() {
 	
 	
 	a.innerHTML = "P:"+this.point_.paro+"<br/>O:"+this.point_.ofertas;
-	a.href = "http://www.google.com";
+	a.href = this.point_.href;
 	a.className = 'pto '+this.point_.styleClass;
 	a = CircleOverlay.update_attributes_a(a, 20, width, this.getMap().getZoom());
 

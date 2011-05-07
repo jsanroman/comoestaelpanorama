@@ -59,5 +59,13 @@ define('DATO_CONTRATOS', 2);
 define('DATO_OFERTAS', 3);
 
 
+/** Cada 7 días volvemos a consultar ofertas*/
+define('MILISECONDS_REGENERATE_JOBS', 604800);
+//define('MILISECONDS_REGENERATE_JOBS', 1800);
+
+
+
+
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

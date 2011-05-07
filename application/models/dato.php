@@ -53,7 +53,7 @@ class dato extends CI_Model {
 	public function get_dato($month, $year, $localidad_id, $ccaa_id, $tipo_dato) {
 		
 		$query = '
-		SELECT SUM(dato) as dato, tipo_dato  
+		SELECT SUM(dato) as dato, tipo_dato, timestamp  
 		FROM dato  
 		WHERE 	1=1 ';
 		
@@ -95,4 +95,7 @@ class dato extends CI_Model {
 
 		return $data;
 	}
+	
+	
+	
 }

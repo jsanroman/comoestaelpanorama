@@ -7,14 +7,17 @@ class C extends MYController {
 	{
 		$this->data['content_body'] = $this->load->view('index', null, true);
 	}
-	
-	
+
+
 	public function detail($id) {
 
 		$l = $this->localidad->get_localidad($id);
 		$data['localidad'] = $l[0];
 		
-		
+		$ofertas = $this->ofertas->get_num_ofertas($l->id, $l->nombre);
+
+		echo $ofertas;
+
 		$this->data['content_body'] = $this->load->view('detail', $data, true);
 	}
 }

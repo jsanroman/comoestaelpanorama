@@ -61,7 +61,8 @@ class ParserXlsParadosContratos {
 					if (empty($localidad) || empty($contratos)) continue;
 					$this->ci->dato->insert_dato_auto($localidad, $month, '20'.$year, $contratos, DATO_CONTRATOS);						
 					$this->ci->dato->insert_dato_auto($localidad, $month, '20'.$year, $paro, DATO_PARO);
-				}				
+				}		
+				unset($data);		
 			}
 		}
 	}

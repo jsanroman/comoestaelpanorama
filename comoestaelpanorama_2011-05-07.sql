@@ -57,7 +57,7 @@ INSERT INTO `ccaa` (`id`, `nombre`) VALUES ('1','andalucia'),
 DROP TABLE IF EXISTS `dato`;
 
 CREATE TABLE `dato` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `localidad_id` int(11) DEFAULT NULL,
   `provincia_id` int(11) DEFAULT NULL,
   `ccaa_id` int(11) DEFAULT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `dato` (
 DROP TABLE IF EXISTS `localidad`;
 
 CREATE TABLE `localidad` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   `provincia_id` int(11) DEFAULT NULL,
   `puntuacion` int(11) DEFAULT NULL,

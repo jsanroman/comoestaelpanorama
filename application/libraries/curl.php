@@ -60,6 +60,7 @@ class Curl {
 		curl_exec ($ch);
 		curl_close ($ch);
 		fclose($fp);
+		unset($ch);
 		return $file;
 	}
 }

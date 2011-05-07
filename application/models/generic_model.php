@@ -10,8 +10,17 @@ class generic_model extends CI_Model {
 		$this->type = $type;
 	}
 	
-	public function insert_generic($nombre, $lat, $lng){
-		$query = "INSERT INTO {$this->type} (nombre, lat, lng) VALUES ('$nombre','$lat','$lng')";
+	public function insert_generic($nombre, $lat, $lng, $id_parent = false, $poblacion = false){
+		if (false !== $poblacion) {
+			$field = ',poblacion';
+			$value = ",'$poblacion'";	
+		}
+		if (false !== $id_parent){
+			$field .= ",".$id_parent['id'];
+			$value .= ",".$id_parent['value'];
+		}  
+		
+		$query = "INSERT INTO {$this->type} (nombre, lat, lng $field) VALUES ('$nombre','$lat','$lng' $value)";
 		$Q = $this->db->query($query);
 		return $Q;
 	}

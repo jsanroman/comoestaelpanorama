@@ -97,5 +97,11 @@ class dato extends CI_Model {
 	}
 	
 	
+	public function get_parados_ahora() {
+		return $this->get_dato($this->get_month_last(), $this->get_year_last(), null, null, DATO_PARO);
+	}
 	
+	public function get_contratos_anho() {
+		return $this->get_dato(null, $this->get_year_last(), null, null, DATO_CONTRATOS);
+	}
 }

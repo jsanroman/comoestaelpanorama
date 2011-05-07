@@ -5,7 +5,11 @@ class C extends MYController {
 
 	public function index()
 	{
-		$this->data['content_body'] = $this->load->view('index', null, true);
+		$d['parados']   = $this->dato->get_parados_ahora();
+		$d['contratos'] = $this->dato->get_contratos_anho();
+		$d['ofertas'] 	= $this->ofertas->get_num_ofertas(null, null, 'España', DATO_OFERTAS_ESPANHA);
+		
+		$this->data['content_body'] = $this->load->view('index', $d, true);
 	}
 
 
@@ -13,10 +17,8 @@ class C extends MYController {
 
 		$l = $this->localidad->get_localidad($id);
 		$data['localidad'] = $l[0];
-		
-		$ofertas = $this->ofertas->get_num_ofertas($l->id, $l->nombre);
 
-		echo $ofertas;
+		$data['ofertas'] = $this->ofertas->get_ofertas($l->nombre);
 
 		$this->data['content_body'] = $this->load->view('detail', $data, true);
 	}

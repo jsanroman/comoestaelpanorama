@@ -22,9 +22,9 @@ class Ofertas {
 	}
 
 
-	public function get_num_ofertas($localidad_id, $ccaa_id, $location) {
+	public function get_num_ofertas($localidad_id, $ccaa_id, $location, $tipo_dato=DATO_OFERTAS) {
 
-		$ofertas = $this->ci->dato->get_dato(null, null, $localidad_id, $ccaa_id, DATO_OFERTAS);
+		$ofertas = $this->ci->dato->get_dato(null, null, $localidad_id, $ccaa_id, $tipo_dato);
 
 		if($ofertas!=null && count($ofertas)>0) {
 			if( (time()-$ofertas[0]->timestamp)  < MILISECONDS_REGENERATE_JOBS) {
@@ -35,6 +35,7 @@ class Ofertas {
 		$api = new Services_Careerjet('es_ES');
 		$page = 1 ; # Or from parameters.
 
+
 		$result = $api->search(array( 'keywords' => '',
                               'location' => $location,
                               'page' => $page ,
@@ -44,9 +45,28 @@ class Ofertas {
 		if ( $result->type == 'JOBS' ){
 
 			// TODO Insertar/Actualizar bbdd
-			
 
 			return $result->hits;
+		}
+	}
+	
+
+	public function get_ofertas($location) {
+		
+		$api = new Services_Careerjet('es_ES');
+		$page = 1 ; # Or from parameters.
+
+		$result = $api->search(array( 'keywords' => '',
+                              'location' => $location,
+                              'page' => $page ,
+                              'pagesize' => 20)
+		);
+
+		if ( $result->type == 'JOBS' ){
+
+			// TODO Insertar/Actualizar bbdd
+
+			return $result;
 		}
 	}
 }

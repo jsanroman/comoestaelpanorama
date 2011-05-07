@@ -4,7 +4,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.1.53)
 # Database: comoestaelpanorama
-# Generation Time: 2011-05-07 00:56:33 +0200
+# Generation Time: 2011-05-07 02:34:25 +0200
 # ************************************************************
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -26,6 +26,8 @@ CREATE TABLE `ccaa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   `puntuacion` int(11) DEFAULT NULL,
+  `lat` varchar(25) DEFAULT NULL,
+  `lng` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -62,6 +64,8 @@ CREATE TABLE `localidad` (
   `provincia_id` int(11) DEFAULT NULL,
   `puntuacion` int(11) DEFAULT NULL,
   `poblacion` int(11) DEFAULT NULL,
+  `lat` varchar(25) DEFAULT NULL,
+  `lng` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

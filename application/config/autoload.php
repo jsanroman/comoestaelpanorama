@@ -52,7 +52,11 @@ $autoload['packages'] = array(APPPATH.'third_party');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','session','ParserXlsParadosContratos', 'generic_model');
+$autoload['libraries'] = array(
+							'database',
+							'session',
+							'ParserXlsParadosContratos',
+							'ParserXLSpadron');
 
 
 /*
@@ -109,7 +113,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('ccaa','localidad','provincia','dato');
+$autoload['model'] = array('generic_model','ccaa','localidad','provincia','dato');
 
 
 /* End of file autoload.php */

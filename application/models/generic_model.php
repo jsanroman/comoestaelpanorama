@@ -4,7 +4,7 @@
 class generic_model extends CI_Model {		
 	var $type = '';	
 
-	public function __construct($type)
+	public function __construct($type = '')
 	{
 		parent::__construct();
 		$this->type = $type;

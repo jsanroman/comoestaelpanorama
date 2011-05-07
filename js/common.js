@@ -1,3 +1,14 @@
+var msg = {
+
+	on : function() {
+		$('#msg').html("Actualizando...");
+	},
+	off : function() {
+		$('#msg').html('');
+	}
+
+};
+
 function CircleOverlay(bounds, map, point) {
 
     // Now initialize all properties.
@@ -110,6 +121,9 @@ var map = {
 
 		this.map.fitBounds(new google.maps.LatLngBounds(new google.maps.LatLng(36.91860, -7.0844), new google.maps.LatLng(42.8172, -1.0044)));
 
+//		this.map.enableGoogleBar();
+//		this.map.addControl(new google.maps.LocalSearch());
+
 		google.maps.event.addDomListener(this.map, "zoom_changed", function() {map.bounds = null; });
 
 
@@ -124,10 +138,10 @@ var map = {
 			}
 		});
 	},
-	
+
 	updatePoints : function(points) {
-		
-		document.getElementById("msg").innerHTML = "Actualizando...";
+
+		msg.on();
 
 		map.deleteOverlays();
 
@@ -155,18 +169,15 @@ var map = {
 						var pos_marker = new google.maps.LatLng(points[i].lat, points[i].lng); 
 						var bounds = new google.maps.LatLngBounds(pos_marker, pos_marker);
 						map.overlays.push(new CircleOverlay(bounds, map.map, points[i])); 			
-	
+						msg.off();
+
 					}
 				} catch (e) {
 					alert('no hay ptos');
+					msg.off();
 				}
 			}
 		});	
-		
-
-
-		setInterval("document.getElementById('msg').innerHTML = '';", 2000);
-
 	},
 
 	reloadPoints : function(source_bounds, current_bounds) {
@@ -209,9 +220,54 @@ var map = {
 };
 
 
+var search = {
+		
+	send : function(form) {
+	
+	msg.on();
+	
+	$.ajax({
+		type: form.attr('method'),  
+		url: form.attr('action'),  
+		data: form.serialize(),  
+		success: function(data) {
+			locations = eval(data);
+			
+			if(locations.length==1) {
+				document.location.href = url_base+'c/detail/'+locations[0].id;
+			} else {
+			
+				var address = $('#text_search').val();
+			    var geocoder = new google.maps.Geocoder();
+	
+			    geocoder.geocode( { 'address': address+',ES'}, function(results, status) {
+			      if (status == google.maps.GeocoderStatus.OK) {
+			        map.map.setCenter(results[0].geometry.location);
+			        map.map.setZoom(10);
+			      } else {
+			        alert("No hemos encontrado: "+address);
+			      }
+			    });
+			    
+			    msg.off();
+			}
+		}
+	});
+	return false;
+	}
+};
+
 
 $(document).ready(function() {
 
 	map.initialize();
 
+	
+	$('#search').submit(function(){
+		
+		search.send($(this));
+		
+		return false;
+	});
+	
 });

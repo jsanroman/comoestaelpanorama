@@ -4,6 +4,7 @@ body {
 	background-image: url("../images/fondo.jpg");
 	background-position: center top;
 	background-repeat: no-repeat;
+	font-family: arial;
 }
 
 h1 a {
@@ -47,8 +48,9 @@ h3{
 #map_canvas {
 	margin-top:30px;
 	position: relative !important;
-	width: 800px;
+	width: 900px;
 	height: 500px !important;
+	margin-bottom:30px;
 }
 
 
@@ -88,7 +90,101 @@ a.pto_3 {
 
 #detail #map_canvas {
 	height: 300px !important;
-	width: 900px !important;
 	margin-top:0px;
 }
 
+.block {
+/*	border:2px solid;*/
+	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+
+	padding: 10px;
+}
+	
+.red .title {
+	font-family: 'Annie Use Your Telescope', arial, serif;
+	font-size: 25px;
+	color: #D81111;
+	
+}
+
+.red{
+	border: 3px outset #D81111 !important;
+}
+
+.blue {
+/*	background-color: #D8ECFF;*/
+	border: 3px outset #1990FF !important;
+}
+
+.blue .title {
+	font-family: 'Annie Use Your Telescope', arial, serif;
+	font-size: 25px;
+	color: #1990FF;
+}
+
+.blue input[type="text"] {
+	padding:6px;
+	font-size: 20px;
+	width: 290px;
+	
+}
+.blue input[type="submit"] {
+	font-size:20px;
+	height:30px;
+}
+
+
+.green {
+	border: 3px outset #18AD22 !important;
+}
+.green .title {
+	font-family: 'Annie Use Your Telescope', arial, serif;
+	font-size: 25px;
+	color: #18AD22;
+}
+
+.text_right {
+	text-align: right;
+}
+
+.floatleft {
+	float: left;
+	margin-right:0px;
+	margin-left:0px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	font-size: 11px;
+}
+
+
+.cifra{
+	font-size: 50px;
+	font-weight: bold;
+	margin-bottom:-10px;
+	text-shadow: 0px 0px 2px #333;
+	padding:5px;
+}
+
+.cifra .red{
+	color: #D81111;
+	border: none !important;
+}
+
+.cifra .green {
+	color:#18AD22;
+	border: none !important;
+}
+
+.sep_cifra{
+	font-size: 25px;
+	vertical-align: middle;
+	line-height: 50px;
+	margin-top:15px;
+	border-left:1px outset #000;
+	display: block;
+	width: 1px;
+	height: 40px;
+}

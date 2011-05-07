@@ -54,10 +54,19 @@ class generic_model extends CI_Model {
 	
 	public function search_generic($name) {
 		
-		$query = "SELECT id FROM {$this->type} WHERE name LIKE '%$name%'";
+		$query = "SELECT id FROM {$this->type} WHERE nombre LIKE '%$name%'";
 		$Q = $this->db->query($query);
 		$data = $Q->result();
 		$Q->free_result();
 		return $data;
 	}	
+
+	public function get_generic_parent($id, $parent = 'provincia') {
+		
+		$query = "SELECT {$parent}_id FROM {$this->type} WHERE id = $id";
+		$Q = $this->db->query($query);
+		$data = $Q->result();
+		$Q->free_result();
+		return $data;
+	}
 }

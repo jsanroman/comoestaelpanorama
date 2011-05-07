@@ -39,10 +39,10 @@ class Curl {
 	
 	public function open_https_url_file($url) {
 
-		echo $url."\r\n";
+		log_message('DEBUG',"Opening...".$url);
 		$filename = basename($url);
-		$year = substr($filename, -8,2);
-		$month= substr($filename, -6,2);
+		$month = substr($filename, -8,2);
+		$year= substr($filename, -6,2);
 		if (is_numeric($year) && is_numeric($month)) $path = PATH_TEMP."$year/$month/";
 		else $path = (is_numeric($year)) ? PATH_TEMP."$year/other_data/" :  PATH_TEMP."non_structured_data/";
 		if (!file_exists($path)) mkdir($path,'0777',true);

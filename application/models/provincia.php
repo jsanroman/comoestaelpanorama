@@ -24,4 +24,12 @@ class provincia extends generic_model {
 	public function get_provincia($id) {
 		return $this->get_generic($id);
 	}
+	
+	public function get_id($name){
+		return $this->search_generic($name);
+	}
+	
+	public function get_parent_id($name){
+		return $this->get_generic_parent($name,'ccaa');
+	}
 }

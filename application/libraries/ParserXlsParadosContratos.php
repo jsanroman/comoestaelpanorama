@@ -23,7 +23,22 @@ class ParserXlsParadosContratos {
 		$this->ci->load->library('Curl');
 		
 	}
-
+	
+	public function normalize ($string){ 
+		$replac = array(
+    'Š'=>'S', 'š'=>'s', 'Ð'=>'Dj','Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 
+    'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E', 'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 
+    'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 
+    'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss','à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 
+    'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 
+    'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 
+    'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', 'ƒ'=>'f', '.'=>'' , ','=>'',  '('=>'',
+	')'=>'',  '"'=>'', "'"=>'');  
+		
+		//$string = mb_convert_encoding($string,'UTF-8','ISO-8859-1');		
+		return strtolower(strtr($string, $replac));
+	} 
+	 
 	public function parser() {
 
 		$curl = new Curl();
@@ -34,12 +49,17 @@ class ParserXlsParadosContratos {
 			foreach ($this->links_xls as $link) {
 
 				$file_name = $curl->open_https_url_file($link);
-
-				$data = new Spreadsheet_Excel_Reader($file_name); 
+				$month = substr($link, -8,2);
+				$year = substr($link, -6,2);
 				
-				//$this->ci->
-				echo "Obtenido ".$data->val(4,'B').'/'.$data->val(4,'J').'\r\n';
+				$data = new Spreadsheet_Excel_Reader($file_name); 
+				for ($i=9;$i < $data->rowcount();$i++){
+					$localidad = $this->normalize($data->val($i,'B'));
+					$contratos = $this->normalize($data->val($i,'C'));	
 
+					if (empty($localidad) || empty($contratos)) continue;
+					$this->ci->dato->insert_dato_auto($localidad, $month, '20'.$year, $contratos, DATO_CONTRATOS);						
+				}				
 			}
 		}
 	}

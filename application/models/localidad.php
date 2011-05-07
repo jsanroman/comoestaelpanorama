@@ -108,4 +108,7 @@ class localidad extends generic_model {
 
 		return $data;
 	}
+	public function get_parent_id($name){
+		return $this->get_generic_parent($name,'provincia');
+	}
 }

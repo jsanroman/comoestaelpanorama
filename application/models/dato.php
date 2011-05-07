@@ -95,4 +95,44 @@ class dato extends CI_Model {
 
 		return $data;
 	}
+	
+	public function insert_dato_auto($name, $mes, $anho, $dato, $tipo_dato){		
+		$array_name = split(' ',$name);//por si es nombre compuesto...
+		if (isset($array_name[1])){			
+			$best_name = '';			
+			foreach ($array_name as $index=>$biggest) {											
+				$len1 = strlen($best_name);
+				$len2 = strlen($biggest);
+				$best_name = ($len1 < $len2) ? $biggest : $best_name;									
+			}
+			log_message('DEBUG',"Best name for '$name' is $best_name");
+		}
+		
+		if (isset($best_name)){
+			$name = $best_name;
+			unset($best_name);
+			$localidad_id = $this->localidad->search_generic(strtolower($name));
+			print_r($localidad_id);	
+			$localidad_id = $localidad_id[0]->id;
+		} else {
+			$localidad_id = $this->localidad->search_location(strtolower($name));	
+			$localidad_id = $localidad_id[0]->id;
+		}
+		if (!$localidad_id) return false;
+		
+		$provincia_id = $this->localidad->get_parent_id($localidad_id);
+		$provincia_id = $provincia_id[0]->provincia_id;
+		$ccaa_id = $this->provincia->get_parent_id($provincia_id);
+		$ccaa_id = $ccaa_id[0]->ccaa_id;
+		
+		if (!($localidad_id && $provincia_id && $ccaa_id)){
+			log_message('DEBUG',"Error in $name : id->$localidad_id provincia_id->$provincia_id cca_id->$ccaa_id"); 
+			return false;
+		}
+		
+		$timestamp = date('U');
+		$query = "INSERT INTO dato (localidad_id, provincia_id, ccaa_id, mes, anho, dato, tipo_dato, timestamp) VALUES ('$localidad_id','$provincia_id','$ccaa_id', '$mes', '$anho', '$dato', '$tipo_dato', '$timestamp')";
+//		log_message('DEBUG',"inserting dato $query");		
+		return $this->db->query($query);
+	}
 }

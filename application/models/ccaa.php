@@ -41,5 +41,9 @@ class ccaa extends generic_model {
 			$retval[] = $p;
 		}
 		return $retval;
-	}		
+	}
+			
+	public function get_id($name){
+		return $this->search_generic($name);
+	}
 }

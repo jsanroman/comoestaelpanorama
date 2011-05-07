@@ -14,5 +14,16 @@ class ccaa extends CI_Model {
 	}
 
 
+	public function get_ccaa() {
 
+		$query = 'SELECT id, nombre, puntuacion, lat, lng FROM ccaa';
+
+		$Q = $this->db->query($query);
+
+		$data = $Q->result();
+
+		$Q->free_result();
+
+		return $data;
+	}
 }

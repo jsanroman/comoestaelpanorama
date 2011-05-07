@@ -22,6 +22,19 @@ class json extends MYController {
 	public function locations() {
 		$this->data['content_body'] = $this->load->view('json/locations', null, true);
 	}
+	
+	
+	public function search() {
+		
+//			$conds['collection_id'] = $this->input->post('collection');
+		
+		log_message('debug',$this->input->post('text_search'));
+		
+		$d['localidades'] = $this->localidad->search_location($this->input->post('text_search'));
+		
+		$this->data['content_body'] = $this->load->view('json/search', $d, true);
+	}
+	
 }
 
 /* End of file json.php */

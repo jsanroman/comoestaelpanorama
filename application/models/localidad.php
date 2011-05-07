@@ -87,6 +87,25 @@ class localidad extends generic_model {
 
 		return $retval;
 	}
+
 	
-	
+	public function search_location($location) {
+
+		$query = '
+		SELECT id 
+		FROM localidad 
+		WHERE nombre = "'.$location.'"';
+
+		
+		log_message('debug',$query);
+		
+		
+		$Q = $this->db->query($query);
+
+		$data = $Q->result();
+
+		$Q->free_result();
+
+		return $data;
+	}
 }

@@ -103,67 +103,88 @@ a.pto_3 {
 	padding: 10px;
 }
 	
-.red_background .title {
+.red .title {
 	font-family: 'Annie Use Your Telescope', arial, serif;
 	font-size: 25px;
 	color: #D81111;
 	
 }
 
-.red_background {
-	background-color: #FFD3D3;
+.red{
+	border: 3px outset #D81111 !important;
 }
 
-.blue_background {
-	background-color: #D8ECFF;
+.blue {
+/*	background-color: #D8ECFF;*/
+	border: 3px outset #1990FF !important;
 }
 
-.blue_background .title {
+.blue .title {
 	font-family: 'Annie Use Your Telescope', arial, serif;
 	font-size: 25px;
 	color: #1990FF;
 }
 
-.blue_background input[type="text"] {
+.blue input[type="text"] {
 	padding:6px;
-	font-size: 30px;
-	width: 600px;
+	font-size: 20px;
+	width: 290px;
 	
 }
-.blue_background input[type="submit"] {
-	font-size:40px;
+.blue input[type="submit"] {
+	font-size:20px;
+	height:30px;
 }
 
-.red {
-	border-color: #D81111 !important;
+
+.green {
+	border: 3px outset #18AD22 !important;
 }
-	
+.green .title {
+	font-family: 'Annie Use Your Telescope', arial, serif;
+	font-size: 25px;
+	color: #18AD22;
+}
+
 .text_right {
 	text-align: right;
 }
 
-.inlineblock {
-	display: inline-block;
-	margin-right:20px;
-	margin-left:20px;
-	
+.floatleft {
+	float: left;
+	margin-right:0px;
+	margin-left:0px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	border: 2px #FFC6C6 inset;
-	padding:5px;
+	font-size: 11px;
 }
+
 
 .cifra{
 	font-size: 50px;
 	font-weight: bold;
 	margin-bottom:-10px;
-	text-shadow: 0px 0px 2px #333
+	text-shadow: 0px 0px 2px #333;
+	padding:5px;
 }
 
 .cifra .red{
 	color: #D81111;
+	border: none !important;
 }
 
 .cifra .green {
 	color:#18AD22;
+	border: none !important;
+}
+
+.sep_cifra{
+	font-size: 25px;
+	vertical-align: middle;
+	line-height: 50px;
+	margin-top:15px;
+	border-left:1px outset #000;
+	display: block;
+	width: 1px;
+	height: 40px;
 }

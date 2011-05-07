@@ -110,6 +110,9 @@ var map = {
 
 		this.map.fitBounds(new google.maps.LatLngBounds(new google.maps.LatLng(36.91860, -7.0844), new google.maps.LatLng(42.8172, -1.0044)));
 
+//		this.map.enableGoogleBar();
+//		this.map.addControl(new google.maps.LocalSearch());
+
 		google.maps.event.addDomListener(this.map, "zoom_changed", function() {map.bounds = null; });
 
 
@@ -124,9 +127,9 @@ var map = {
 			}
 		});
 	},
-	
+
 	updatePoints : function(points) {
-		
+
 		document.getElementById("msg").innerHTML = "Actualizando...";
 
 		map.deleteOverlays();
@@ -209,9 +212,51 @@ var map = {
 };
 
 
+var search = {
+		
+	send : function(form) {
+	
+	
+	$.ajax({
+		type: form.attr('method'),  
+		url: form.attr('action'),  
+		data: form.serialize(),  
+		success: function(data) {
+			locations = eval(data);
+			
+			if(locations.length==1) {
+				document.location.href = url_base+'c/detail/'+locations[0].id;
+			} else {
+			
+				var address = $('#text_search').val();
+			    var geocoder = new google.maps.Geocoder();
+	
+			    geocoder.geocode( { 'address': address+',ES'}, function(results, status) {
+			      if (status == google.maps.GeocoderStatus.OK) {
+			        map.map.setCenter(results[0].geometry.location);
+			        map.map.setZoom(10);
+			      } else {
+			        alert("No hemos encontrado: "+address);
+			      }
+			    });
+			}
+		}
+	});
+	return false;
+	}
+};
+
 
 $(document).ready(function() {
 
 	map.initialize();
 
+	
+	$('#search').submit(function(){
+		
+		search.send($(this));
+		
+		return false;
+	});
+	
 });

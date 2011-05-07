@@ -1,5 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+require_once 'application/libraries/JSON.php';
 require_once "Services_Careerjet.php" ;
 
 class Ofertas {

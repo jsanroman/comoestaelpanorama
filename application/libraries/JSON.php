@@ -1,4 +1,6 @@
 <?php
+require_once 'application/libraries/json_interface.php';
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**

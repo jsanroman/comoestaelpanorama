@@ -53,7 +53,7 @@ class dato extends CI_Model {
 	public function get_dato($month, $year, $localidad_id, $ccaa_id, $tipo_dato) {
 		
 		$query = '
-		SELECT SUM(dato) as dato, tipo_dato  
+		SELECT SUM(dato) as dato, tipo_dato, timestamp 
 		FROM dato  
 		WHERE 	1=1 ';
 		
@@ -130,9 +130,19 @@ class dato extends CI_Model {
 			log_message('DEBUG',"Error in $name : id->$localidad_id provincia_id->$provincia_id cca_id->$ccaa_id"); 
 			return false;
 		}
-		
+
 		$timestamp = date('U');
 		$query = "INSERT INTO dato (localidad_id, provincia_id, ccaa_id, mes, anho, dato, tipo_dato, timestamp) VALUES ('$localidad_id','$provincia_id','$ccaa_id', '$mes', '$anho', '$dato', '$tipo_dato', '$timestamp')";
+//		log_message('DEBUG',"inserting dato $query");		
+		return $this->db->query($query);
+	}
+
+
+	public function insert_dato_oferta($localidad_id, $ccaa_id, $dato, $tipo_dato) {
+
+		$timestamp = date('U');
+		$query = "INSERT INTO dato (localidad_id, provincia_id, ccaa_id, mes, anho, dato, tipo_dato, timestamp) 
+		VALUES ('$localidad_id','','$ccaa_id', '', '', '$dato', '$tipo_dato', '$timestamp')";
 //		log_message('DEBUG',"inserting dato $query");		
 		return $this->db->query($query);
 	}

@@ -44,7 +44,7 @@ class Ofertas {
 
 		if ( $result->type == 'JOBS' ){
 
-			// TODO Insertar/Actualizar bbdd
+			$this->ci->dato->insert_dato_oferta($localidad_id, $ccaa_id, $result->hits, $tipo_dato);
 
 			return $result->hits;
 		}

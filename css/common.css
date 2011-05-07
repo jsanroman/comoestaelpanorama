@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+
+#map_canvas {
+
+	width: 800px;
+	height: 500px !important;
+}
+
+
+a.pto1 {
+	color: #ffffff;
+	display: block;
+	vertical-align: middle;
+	text-align: center;
+	background: #18AD22;
+	z-index: 1;
+	filter: alpha(opacity = 95);
+	-moz-opacity: .95;
+	opacity: .95;
+	position: absolute;
+	/*	border:1px solid #fff;*/
+	-moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#660C0C),
+		to(#616665), color-stop(.6, #0D0933) );
+	-moz-box-shadow: 10px 10px 5px #000;
+	-webkit-box-shadow: 10px 10px 5px #000;
+	box-shadow: 5px 2px 5px #000;
+	text-decoration: none;
+}

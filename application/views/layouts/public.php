@@ -5,9 +5,12 @@
 	<meta http-equiv="expires" content="0" />
 	<meta name="Robots" content="index,follow">
 
-	<link href="<?php echo base_url() ?>css/style.css" rel="stylesheet" type="text/css" media="screen" title="default">
+	<link href="<?php echo base_url() ?>css/common.css" rel="stylesheet" type="text/css" media="screen" title="default">
 
 	<script language="javascript" type="text/javascript" src="<?php echo base_url() ?>js/jquery-1.6.min.js"></script>
+	
+	<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo base_url() ?>js/common.js"></script>
 
 	<title></title>

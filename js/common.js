@@ -1,3 +1,14 @@
+var msg = {
+
+	on : function() {
+		$('#msg').html("Actualizando...");
+	},
+	off : function() {
+		$('#msg').html('');
+	}
+
+};
+
 function CircleOverlay(bounds, map, point) {
 
     // Now initialize all properties.
@@ -130,7 +141,7 @@ var map = {
 
 	updatePoints : function(points) {
 
-		document.getElementById("msg").innerHTML = "Actualizando...";
+		msg.on();
 
 		map.deleteOverlays();
 
@@ -158,18 +169,15 @@ var map = {
 						var pos_marker = new google.maps.LatLng(points[i].lat, points[i].lng); 
 						var bounds = new google.maps.LatLngBounds(pos_marker, pos_marker);
 						map.overlays.push(new CircleOverlay(bounds, map.map, points[i])); 			
-	
+						msg.off();
+
 					}
 				} catch (e) {
 					alert('no hay ptos');
+					msg.off();
 				}
 			}
 		});	
-		
-
-
-		setInterval("document.getElementById('msg').innerHTML = '';", 2000);
-
 	},
 
 	reloadPoints : function(source_bounds, current_bounds) {
@@ -216,6 +224,7 @@ var search = {
 		
 	send : function(form) {
 	
+	msg.on();
 	
 	$.ajax({
 		type: form.attr('method'),  
@@ -239,6 +248,8 @@ var search = {
 			        alert("No hemos encontrado: "+address);
 			      }
 			    });
+			    
+			    msg.off();
 			}
 		}
 	});

@@ -28,8 +28,8 @@ class localidad extends generic_model {
 
 	public function get_localidades($lat_ne, $lng_ne, $lat_sw, $lng_sw) {
 
-		$month = $this->dato->get_month_last();
 		$year  = $this->dato->get_year_last();
+		$month = $this->dato->get_month_last($year);
 
 		$query = '
 		SELECT distinct l.* 

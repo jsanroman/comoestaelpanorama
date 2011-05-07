@@ -20,9 +20,9 @@ class dato extends CI_Model {
 	}
 
 
-	public function get_month_last () {
+	public function get_month_last ($year) {
 		
-		$query = ' SELECT MAX(mes) as mes FROM dato';
+		$query = ' SELECT MAX(mes) as mes FROM dato WHERE anho='.$year;
 
 		$Q = $this->db->query($query);
 
@@ -50,10 +50,10 @@ class dato extends CI_Model {
 		}
 	}
 
-	public function get_dato($month, $year, $localidad_id, $ccaa_id, $tipo_dato) {
+	public function get_dato($month, $year, $localidad_id, $ccaa_id, $tipo_dato=null) {
 		
 		$query = '
-		SELECT SUM(dato) as dato, tipo_dato  
+		SELECT SUM(dato) as dato, tipo_dato, timestamp 
 		FROM dato  
 		WHERE 	1=1 ';
 		
@@ -130,18 +130,33 @@ class dato extends CI_Model {
 			log_message('DEBUG',"Error in $name : id->$localidad_id provincia_id->$provincia_id cca_id->$ccaa_id"); 
 			return false;
 		}
-		
+
 		$timestamp = date('U');
 		$query = "INSERT INTO dato (localidad_id, provincia_id, ccaa_id, mes, anho, dato, tipo_dato, timestamp) VALUES ('$localidad_id','$provincia_id','$ccaa_id', '$mes', '$anho', '$dato', '$tipo_dato', '$timestamp')";
 //		log_message('DEBUG',"inserting dato $query");		
 		return $this->db->query($query);
 	}
+
+
+	public function insert_dato_oferta($localidad_id, $ccaa_id, $dato, $tipo_dato) {
+
+		$timestamp = date('U');
+		$query = "INSERT INTO dato (localidad_id, provincia_id, ccaa_id, mes, anho, dato, tipo_dato, timestamp) 
+		VALUES ('$localidad_id','','$ccaa_id', '', '', '$dato', '$tipo_dato', '$timestamp')";
+//		log_message('DEBUG',"inserting dato $query");		
+		return $this->db->query($query);
+	}
 	
 	public function get_parados_ahora() {
-		return $this->get_dato($this->get_month_last(), $this->get_year_last(), null, null, DATO_PARO);
+		log_message('debug','++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+		$year = $this->get_year_last();
+		$month = $this->get_month_last($year);
+		$dato = $this->get_dato($month, $year, null, null, DATO_PARO);
+		return $dato;
 	}
 
 	public function get_contratos_anho() {
-		return $this->get_dato(null, $this->get_year_last(), null, null, DATO_CONTRATOS);
+		$dato = $this->get_dato(null, $this->get_year_last(), null, null, DATO_CONTRATOS);
+		return $dato;
 	}
 }

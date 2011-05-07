@@ -4,7 +4,7 @@
 <div id="map_canvas"></div>
 
 <div style="height:160px;">
-<div class="block red floatleft" style="margin:0px;">
+<div class="block red floatleft" style="width:530px;margin:0px;height:110px;">
 
 	<div class="title">... en España</div>
 
@@ -27,7 +27,7 @@
 </div>
 
 
-<div class="block blue floatleft" style="margin-left:5px;height:110px;">
+<div class="block blue floatleft" style="margin-left:10px;height:110px;">
 
 	<div class="title">...y en tu zona?</div>
 
@@ -40,7 +40,7 @@
 </div>
 </div>
 
-<div style="margin-top:20px;">
+<div style="margin-top:20px;width:600px;">
 	<div class="block green">
 	
 		<div class="title">¿Dudas entre 2 sitios?</div>
@@ -55,7 +55,7 @@
 	
 	
 	
-	<div class="block blue">
+	<div class="block blue" style="margin-top:30px;">
 	
 		<div class="title">... y en tu zona?</div>
 	

@@ -7,12 +7,16 @@ body {
 	font-family: arial;
 }
 
-h1 a {
-	text-decoration: none; 
-	color: #ec6d06;
+h1{
+	top:50px;
+	margin-left:0px !important;
+	position: absolute;
 }
-h1 a:hover {
-	text-decoration: underline; 
+
+h2{
+	margin-left:230px !important;
+	margin-top:0px;
+/*	position: absolute;*/
 }
 
 h1, h2 { 
@@ -21,14 +25,14 @@ h1, h2 {
 	margin:0px;
 	padding:0px;
 	color: #ec6d06;
-	margin-left:-10px;
+/*	margin-left:-10px;*/
 }
 
 h2{
 	font-size: 20px !important;
 	color: #555;
-	margin-top:-30px;
-	padding-left:25px;
+/*	margin-top:-30px;*/
+/*	padding-left:25px;*/
 }
 
 h3{
@@ -42,11 +46,11 @@ h3{
 	margin: auto;
 	width: 900px;
 	height: 800px;
-	margin-top: 30px;
+	margin-top: 115px;
 }
 
 #map_canvas {
-	margin-top:30px;
+	margin-top:20px;
 	position: relative !important;
 	width: 900px;
 	height: 500px !important;
@@ -99,8 +103,8 @@ a.pto_3 {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-
 	padding: 10px;
+	background: #fff;
 }
 	
 .red .title {
@@ -111,12 +115,12 @@ a.pto_3 {
 }
 
 .red{
-	border: 3px outset #D81111 !important;
+	border: 3px solid #D81111 !important;
 }
 
 .blue {
 /*	background-color: #D8ECFF;*/
-	border: 3px outset #1990FF !important;
+	border: 3px solid #1990FF !important;
 }
 
 .blue .title {
@@ -138,7 +142,7 @@ a.pto_3 {
 
 
 .green {
-	border: 3px outset #18AD22 !important;
+	border: 3px solid #18AD22 !important;
 }
 .green .title {
 	font-family: 'Annie Use Your Telescope', arial, serif;

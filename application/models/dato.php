@@ -20,9 +20,9 @@ class dato extends CI_Model {
 	}
 
 
-	public function get_month_last () {
+	public function get_month_last ($year) {
 		
-		$query = ' SELECT MAX(mes) as mes FROM dato';
+		$query = ' SELECT MAX(mes) as mes FROM dato WHERE anho='.$year;
 
 		$Q = $this->db->query($query);
 
@@ -50,7 +50,7 @@ class dato extends CI_Model {
 		}
 	}
 
-	public function get_dato($month, $year, $localidad_id, $ccaa_id, $tipo_dato) {
+	public function get_dato($month, $year, $localidad_id, $ccaa_id, $tipo_dato=null) {
 		
 		$query = '
 		SELECT SUM(dato) as dato, tipo_dato, timestamp 
@@ -148,10 +148,15 @@ class dato extends CI_Model {
 	}
 	
 	public function get_parados_ahora() {
-		return $this->get_dato($this->get_month_last(), $this->get_year_last(), null, null, DATO_PARO);
+		log_message('debug','++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+		$year = $this->get_year_last();
+		$month = $this->get_month_last($year);
+		$dato = $this->get_dato($month, $year, null, null, DATO_PARO);
+		return $dato;
 	}
 
 	public function get_contratos_anho() {
-		return $this->get_dato(null, $this->get_year_last(), null, null, DATO_CONTRATOS);
+		$dato = $this->get_dato(null, $this->get_year_last(), null, null, DATO_CONTRATOS);
+		return $dato;
 	}
 }

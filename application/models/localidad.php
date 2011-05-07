@@ -14,8 +14,8 @@ class localidad extends generic_model {
 		parent::__construct('localidad');
 	}
 
-	public function insert_localidad($nombre, $lat, $lng){
-		return $this->insert_generic($nombre, $lat, $lng);		
+	public function insert_localidad($nombre, $lat, $lng, $id_provincia ,$poblacion){
+		return $this->insert_generic($nombre, $lat, $lng, $id_provincia ,$poblacion);		
 	}
 
 	public function modify_localidad($array_info){

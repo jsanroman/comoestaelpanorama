@@ -108,15 +108,17 @@ class dato extends CI_Model {
 			log_message('DEBUG',"Best name for '$name' is $best_name");
 		}
 		
-		if (isset($best_name)){
+		
+		$localidad_id = $this->localidad->search_location(strtolower($name));	
+		if (isset($localidad_id[0])){
+			$localidad_id = $localidad_id[0]->id;
+		} else if (isset($best_name)){			
 			$name = $best_name;
 			unset($best_name);
 			$localidad_id = $this->localidad->search_generic(strtolower($name));				
 			$localidad_id = $localidad_id[0]->id;
-		} else {
-			$localidad_id = $this->localidad->search_location(strtolower($name));	
-			$localidad_id = $localidad_id[0]->id;
 		}
+		
 		if (!$localidad_id) return false;
 		
 		$provincia_id = $this->localidad->get_parent_id($localidad_id);

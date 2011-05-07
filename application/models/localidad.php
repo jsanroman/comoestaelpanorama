@@ -87,4 +87,6 @@ class localidad extends generic_model {
 
 		return $retval;
 	}
+	
+	
 }

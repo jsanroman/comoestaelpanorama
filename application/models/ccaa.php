@@ -22,7 +22,7 @@ class ccaa extends generic_model {
 	}
 
 	public function get_ccaa() {
-		$data = $this->get_generic($id);
+		$data = $this->get_generic('all');
 		$retval = null;
 		foreach ($data as $p) {
 //			print_r($p);

@@ -9,8 +9,13 @@ class C extends MYController {
 	}
 	
 	
-	public function detail() {
-		$this->data['content_body'] = $this->load->view('detail', null, true);
+	public function detail($id) {
+
+		$l = $this->localidad->get_localidad($id);
+		$data['localidad'] = $l[0];
+		
+		
+		$this->data['content_body'] = $this->load->view('detail', $data, true);
 	}
 }
 

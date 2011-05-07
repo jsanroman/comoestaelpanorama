@@ -98,7 +98,7 @@ class ParserXlsParadosContratos {
 		$curl = new Curl();
 		$html = $curl->open_https_url($this->www_months);
 
-		$regexp = "<a\s[^>]*href=([\"\']??)([^\" >]*(2009|201[0-9].html))\\1[^>]*>(.*)<\/a>"; 
+		$regexp = "<a\s[^>]*href=([\"\']??)([^\" >]*(2009|201[0-9].html|201[0-9]))\\1[^>]*>(.*)<\/a>"; 
 
 		if(preg_match_all("/$regexp/siU", $html, $links, PREG_SET_ORDER)) { 
 			foreach($links as $link) { 

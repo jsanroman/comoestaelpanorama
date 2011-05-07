@@ -41,7 +41,26 @@ class ccaa extends generic_model {
 
 
 			$ca->ofertas = $this->ofertas->get_num_ofertas(null, $ca->id, $ca->nombre);
-
+					
+			$lat = $ca->lat;			
+			if ('' == $lat){				
+				require_once 'application/libraries/JSON.php';
+				
+				$nombre = $ca->nombre;
+				$location = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=".urlencode($nombre).",ES&sensor=false");			
+				$location_decode = json_decode($location);
+										
+				if (isset($location_decode->results[0])){
+					$ca->lat = $location_decode->results[0]->geometry->location->lat;
+					$ca->lng = $location_decode->results[0]->geometry->location->lng;
+					
+					$info = array('id'=>$ca->id,
+									'lat'=>$ca->lat,
+									'lng'=>$ca->lng);
+					$this->ccaa->modify_ccaa($info);
+				} 							
+			}
+			
 			$retval[] = $ca;
 		}
 		return $retval;

@@ -26,26 +26,22 @@ class generic_model extends CI_Model {
 	}
 
 	public function modify_generic($array_info){
-		$fields = "(";
-		$values = "(";
+		
 		foreach ($array_info as $index=>$value) {
 			if ($index == 'id') continue;
-			$fields = "'$index',"; 
-			$values ="'$value',"; 
+			$fields .= "$index='$value',"; 
 		}
+		$fields = substr($fields,0,-1);		
 		
-		$fields = substr($fields,-1).")";
-		$values = substr($fields,-1).")";
-		
-		$query = "UPDATE {$this->type} $fields VALUES $values WHERE id='{$array_info['id']}'";		
+		$query = "UPDATE {$this->type} SET $fields WHERE id='{$array_info['id']}'";		
 		$Q = $this->db->query($query);
 		return $Q;
 	}
 
-	public function get_generic($id) {
+	public function get_generic($id, $limit = 50) {
 		$puntuacion = ($type=='localidad') ? 'puntuacion,' : '';
 		$where = ($id=='all') ? '' : "WHERE id='$id'";
-		$query = "SELECT id, nombre, $puntuacion lat, lng FROM {$this->type} $where";
+		$query = "SELECT id, nombre, $puntuacion lat, lng FROM {$this->type} $where LIMIT $limit";
 		$Q = $this->db->query($query);
 		$data = $Q->result();
 		$Q->free_result();

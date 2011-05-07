@@ -1,9 +1,10 @@
-function CircleOverlay(bounds, map) {
+function CircleOverlay(bounds, map, point) {
 
     // Now initialize all properties.
     this.bounds_ = bounds;
     this.map_ = map;
     this.a_ = null;
+    this.point_ = point;
 
     // Explicitly call setMap on this overlay
     this.setMap(map);
@@ -14,7 +15,7 @@ CircleOverlay.prototype = new google.maps.OverlayView();
 CircleOverlay.prototype.onAdd = function() {
 	var width = 300;
 	var a = document.createElement("a");
-	a.innerHTML = "Vigo<br/>P:12541<br/>O:2151";
+	a.innerHTML = "P:12541<br/>O:2151";
 	a.href = "http://www.google.com";
 	a.className = 'pto1';
 	a = CircleOverlay.update_attributes_a(a, 20, width, this.getMap().getZoom());
@@ -73,19 +74,14 @@ CircleOverlay.prototype.onRemove = function() {
 CircleOverlay.update_attributes_a = function(a, fontSize, size, zoom) {
 
 	size_p = a.innerHTML.length;
-	size = size_p * 2.5;
+	size = size_p * 2.5 * (zoom * 0.15);
 
-	// a.style.fontSize = fontSize+"px";
 	a.style.width = size + "px";
-	a.style.height = (size / 4) * 3 + "px";
-	// a.style.borderRadius= (size/2)+"px";
-	// a.style.lineHeight=size+"px";
+	a.style.height = (size / 3) * 2 + "px";
 
-	a.style.paddingTop = size / 4 + "px";
+	a.style.paddingTop = size / 3 + "px";
 
-	a.style.fontSize = (size_p * (zoom * 0.05)) + 'px';
-
-	// alert(a.innerHTML.length);
+	a.style.fontSize = (size_p * (zoom * 0.08)) + 'px';
 
 	return a;
 }
@@ -111,26 +107,61 @@ var map = {
 
 		google.maps.event.addDomListener(this.map, "zoom_changed", function() {map.bounds = null; });
 
+
+//		map.updatePoints();
+
+
+
+
 		google.maps.event.addDomListener(this.map, "bounds_changed", function() {
-
 			if (map.bounds == null || map.reloadPoints(map.bounds,map.map.getBounds())) {
-
-				document.getElementById("msg").innerHTML = "Actualizando...";
-
-				map.deleteOverlays();
-		 
-				save_ne = new google.maps.LatLng(map.map.getBounds().getNorthEast().lat() + 0.3, map.map.getBounds().getNorthEast().lng() + 0.3); 
-				save_se = new google.maps.LatLng(map.map.getBounds().getSouthWest() .lat() - 0.3, map.map.getBounds().getSouthWest().lng() - 0.3);
-				map.bounds = new google.maps.LatLngBounds(save_se, save_ne);
-				for (i = 0; i < 20; i++) { 
-					var pos_marker = new google.maps.LatLng(42.433 - (i), -8.633 + (i)); 
-					var bounds = new google.maps.LatLngBounds(pos_marker, pos_marker);
-					map.overlays.push(new CircleOverlay(bounds, map.map)); 
-				}
-
-				setInterval("document.getElementById('msg').innerHTML = '';", 2000);
+				map.updatePoints();
 			}
 		});
+	},
+	
+	updatePoints : function(points) {
+		
+		document.getElementById("msg").innerHTML = "Actualizando...";
+
+		map.deleteOverlays();
+
+//		
+		save_ne = new google.maps.LatLng(map.map.getBounds().getNorthEast().lat() + 0.3, map.map.getBounds().getNorthEast().lng() + 0.3); 
+		save_se = new google.maps.LatLng(map.map.getBounds().getSouthWest() .lat() - 0.3, map.map.getBounds().getSouthWest().lng() - 0.3);
+		map.bounds = new google.maps.LatLngBounds(save_se, save_ne);
+
+//		public function points($lat_ne=null, $lng_ne=null, $lat_sw=null, $lng_sw=null, $zoom=null)
+//		var zoom = this.getMap().getZoom();
+
+		$.ajax({
+			type: 'get',  
+			url: url_base+'/json/points/'+
+										map.bounds.getNorthEast().lat()+
+										'/'+map.bounds.getNorthEast().lng()+
+										'/'+map.bounds.getSouthWest().lat()+
+										'/'+map.bounds.getSouthWest().lng()+
+										'/'+map.map.getZoom(), 
+			success: function(data) {
+				try {
+					points = eval(data);
+	
+					for(var i=0;i<points.length;i++) {
+						
+						var pos_marker = new google.maps.LatLng(points[i].lat, points[i].lng); 
+						var bounds = new google.maps.LatLngBounds(pos_marker, pos_marker);
+						map.overlays.push(new CircleOverlay(bounds, map.map, points[i])); 			
+	
+					}
+				} catch (e) {
+				}
+			}
+		});	
+		
+
+
+		setInterval("document.getElementById('msg').innerHTML = '';", 2000);
+
 	},
 
 	reloadPoints : function(source_bounds, current_bounds) {

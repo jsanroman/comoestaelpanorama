@@ -43,9 +43,9 @@ class ParserXLSpadron {
 			$localidad = $this->normalize($data->val($i,'D'));
 			$valor = $this->normalize($data->val($i,'E'));
 			
-			require_once 'application/libraries/JSON.php';
+			/*require_once 'application/libraries/JSON.php';
 			$json = new Services_JSON;
-			
+			*/
 			//log_message('DEBUG',"Reading $provincia $localidad $valor");
 			/*
 			$location = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=".urlencode($localidad).",ES&sensor=false");			

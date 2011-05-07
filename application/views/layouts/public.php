@@ -12,22 +12,32 @@
 	<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	<script language="javascript" type="text/javascript" src="<?php echo base_url() ?>js/common.js"></script>
+	
+	<script language="javascript">
+	var url_base = "<?php echo base_url();?>";
+	</script>
+
+	<link href='http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' type='text/css'/>
 
 	<title></title>
 </head>
 
-<body id="home">
-	<div><?php echo flash_msg() ?></div>
+<body>
 
-	<?php echo $header; ?>
+	<div id="container">
 
+		<div><?php echo flash_msg() ?></div>
+	
+		<?php echo $header; ?>
+	
+	
+		<div class="container">
+			<?php echo $content_body; ?>
+		</div>
+	
+		<?php echo $footer; ?>
 
-	<div class="container">
-		<?php echo $content_body; ?>
 	</div>
-
-	<?php echo $footer; ?>
-
 
 <p><br />Page rendered in {elapsed_time} seconds</p>
 

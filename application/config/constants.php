@@ -43,11 +43,21 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('URL_REDTRABAJA', 'https://www.redtrabaja.es/');
 define('GOOGLE_GEOCODE', 'http://maps.google.com/maps/api/geocode/');
 
+
  /*
   * ESTRUCTURA DE DATOS 
   */
 
 define('PATH_TEMP', '/tmp/');
+
+/*
+ * PARA EL TIPO DE DATOS EN LA BBDD 
+ */
+
+define('DATO_PARO', 1);
+define('DATO_CONTRATOS', 2);
+define('DATO_OFERTAS', 3);
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

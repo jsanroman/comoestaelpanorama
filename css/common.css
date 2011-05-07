@@ -1,14 +1,46 @@
 @CHARSET "UTF-8";
 
+body {
+	background-image: url("../images/fondo.jpg");
+	background-position: center top;
+	background-repeat: no-repeat;
+}
+
+
+
+h1, h2 { 
+	font-family: 'Annie Use Your Telescope', arial, serif;
+	font-size: 70px;
+	margin:0px;
+	padding:0px;
+	color: #ec6d06;
+	margin-left:29px;
+}
+
+h2{
+	font-size: 20px !important;
+	color: #555;
+	margin-top:-30px;
+	padding-left:25px;
+}
+
+
+#container {
+	margin: auto;
+	width: 960px;
+	height: 800px;
+	margin-top: 30px;
+}
 
 #map_canvas {
-
+	margin-top:30px;
+	position: relative !important;
 	width: 800px;
 	height: 500px !important;
 }
 
 
-a.pto1 {
+a.pto {
 	color: #ffffff;
 	display: block;
 	vertical-align: middle;
@@ -23,10 +55,20 @@ a.pto1 {
 	-moz-border-radius: 100%;
 	-webkit-border-radius: 100%;
 	border-radius: 100%;
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#660C0C),
-		to(#616665), color-stop(.6, #0D0933) );
 	-moz-box-shadow: 10px 10px 5px #000;
 	-webkit-box-shadow: 10px 10px 5px #000;
-	box-shadow: 5px 2px 5px #000;
+	box-shadow: 5px 1px 5px #000;
 	text-decoration: none;
+}
+
+a.pto_1 {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#660C0C),
+		to(#616665), color-stop(.6, #0D0933) );
+
+}
+a.pto_2 {
+	background: #FF7D0C;
+}
+a.pto_3 {
+	background: #F40400;
 }

@@ -7,4 +7,9 @@
 </div>
 
 
+	<div class="block">
+		<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FComo-est%25C3%25A1-el-panorama-Abredatos-2011%2F200848863284374&amp;width=880&amp;colorscheme=light&amp;show_faces=true&amp;stream=true&amp;header=true&amp;height=400" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:920px; height:400px;" allowTransparency="true"></iframe>
+	</div>
+
+
 </div>

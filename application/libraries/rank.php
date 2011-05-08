@@ -25,8 +25,7 @@ class Rank {
 		foreach ($max_paro as $index=>$value){
 				$datos = $this->ci->dato->get_paro_max($value->localidad_id);
 				$datos=$datos[0];						
-				$media = intval($datos->dato);	
-				echo $value->dato." < ".$media."<br/>";												
+				$media = intval($datos->dato);															
 				if (intval($value->dato) < $media) {
 					$d['paro'][$value->localidad_id]['paro'] = intval($value->dato);
 				}							

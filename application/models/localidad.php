@@ -26,21 +26,90 @@ class localidad extends generic_model {
 		return $this->get_generic($id);
 	}	
 
+	public function update_geolocation($provincias) {
+	
+			
+			$query = '
+			SELECT l.* 
+			FROM localidad l 
+			WHERE 	l.lat="" 
+			ORDER BY l.poblacion DESC 
+			LIMIT 100
+			';
+
+			log_message('debug',$query);
+			
+			$Q = $this->db->query($query);
+			$locations = $Q->result();
+			$Q->free_result();
+	
+			foreach ($locations as $l) {
+	
+					require_once 'application/libraries/JSON.php';
+	
+					$nombre = $l->nombre;
+					$location = file_get_contents("http://maps.google.com/maps/api/geocode/json?address=".urlencode($nombre).",ES&sensor=false");			
+					$location_decode = json_decode($location);
+	
+					if (isset($location_decode->results[0])){
+						$l->lat = $location_decode->results[0]->geometry->location->lat;
+						$l->lng = $location_decode->results[0]->geometry->location->lng;
+						
+						$info = array('id'=>$l->id,
+										'lat'=>$l->lat,
+										'lng'=>$l->lng);
+						$this->modify_localidad($info);
+					}
+			}
+//		}
+	}
+	
+	
+	public function get_localidades_ccaa($ccaa_id) {
+
+			$query = '
+			SELECT l.* 
+			FROM localidad l 
+			LEFT JOIN provincia p ON p.id=l.provincia_id
+			WHERE p.ccaa_id='.$ccaa_id.' 
+			ORDER BY l.poblacion DESC 
+			';
+
+//			log_message('debug',$query);
+
+			$Q = $this->db->query($query);
+			$locations = $Q->result();
+			$Q->free_result();
+			return $locations;
+	}
+	
+	
 	public function get_localidades($lat_ne, $lng_ne, $lat_sw, $lng_sw) {
 
+
+//		$this->provincia->update_geolocation();
+
+		
 		$year  = $this->dato->get_year_last();
 		$month = $this->dato->get_month_last($year);
 
+//		$provincias = $this->provincia->get_provicias($lat_ne, $lng_ne, $lat_sw, $lng_sw);
+//		$provincias = $this->provincia->get_provicias(null, null, null, null);
+		$this->update_geolocation($provincias);
+		
+		
+		
 		$query = '
 		SELECT distinct l.* 
 		FROM localidad l 
 		LEFT JOIN dato d ON d.localidad_id=l.id 
-		WHERE 	lat <= '.$lat_ne.' AND 
-				lat >= '.$lat_sw.' AND 
-				lng <= '.$lng_ne.' AND 
-				lng >= '.$lng_sw.' AND 
+		WHERE 	l.lat <= '.$lat_ne.' AND 
+				l.lat >= '.$lat_sw.' AND 
+				l.lng <= '.$lng_ne.' AND 
+				l.lng >= '.$lng_sw.' AND 
 				d.mes="'.$month.'" AND 
 				d.anho="'.$year.'" 
+		ORDER BY l.poblacion DESC 
 		LIMIT 30
 		';
 
@@ -109,5 +178,53 @@ class localidad extends generic_model {
 	}
 	public function get_parent_id($name){
 		return $this->get_generic_parent($name,'provincia');
+	}
+	
+	
+	public function localidades_proximas($lat, $lng) {
+		
+		$year  = $this->dato->get_year_last();
+		$month = $this->dato->get_month_last($year);
+		
+		$query = '
+		SELECT distinct l.*  
+		FROM localidad l 
+		ORDER BY (
+				 acos(sin(radians('.$lat.')) * sin(radians(l.lat)) +
+				 cos(radians('.$lat.')) * cos(radians(l.lat)) *
+				 cos(radians('.$lng.') - radians(l.lng))) * 6378
+				 )  asc 
+		LIMIT 10
+		';
+		
+		
+		$Q = $this->db->query($query);
+
+		$data = $Q->result();
+
+		$Q->free_result();
+
+		$retval = null;
+		
+		foreach ($data as $l) {
+			
+			$datos = $this->dato->get_dato($month, $year, $l->id, null);
+
+			foreach ($datos as $d) {
+				switch ($d->tipo_dato) {
+					case DATO_PARO:
+						$l->paro = $d->dato;
+						break;
+				}
+			}
+			
+			$l->ofertas = $this->ofertas->get_num_ofertas($l->id, null, $l->nombre);
+
+			$retval[] = $l;
+		}
+		
+		return $retval;
+		
+		
 	}
 }

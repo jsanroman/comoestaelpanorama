@@ -2,71 +2,56 @@
 
 
 <div id="map_canvas"></div>
+<div style="margin-top:-30px;margin-bottom:20px;"><img src="<?php echo base_url();?>/images/leyenda1.png"/></div>
 
-<div style="height:160px;">
-<div class="block red floatleft" style="width:530px;margin:0px;height:110px;">
+<div class="block red floatleft" style="width:875px;margin:0px;">
 
 	<div class="title">... en España</div>
 
 	<div style="text-align:center;">
-		<div class="text_right floatleft">
+		<div class="text_right floatleft" style="width:290px;">
 			<div class="cifra"><spam class="red"><?php echo number_format($parados[0]->dato,0,'','.');?></spam></div>
 			parados&nbsp;&nbsp;&nbsp;
 		</div> 
-		<span class="floatleft sep_cifra"></span>
-		<div class="text_right floatleft">
+		<div class="text_right floatleft" style="width:290px;">
 			<div class="cifra"><spam class="green"><?php echo number_format($contratos[0]->dato,0,'','.');?></spam></div>
-			nuevos contratos&nbsp;&nbsp;&nbsp;
+			nuevos contratos en marzo&nbsp;&nbsp;&nbsp;
 		</div> 
-		<span class="floatleft sep_cifra"></span>
-		<div class="text_right floatleft">
+		<div class="text_right floatleft" style="width:290px;">
 			<div class="cifra"><spam class="green"><?php echo number_format($ofertas,0,'','.');?></spam></div>
-			ofertas&nbsp;&nbsp;&nbsp;
+			ofertas hoy&nbsp;&nbsp;&nbsp;
 		</div>
 	</div> 
 </div>
 
 
-<div class="block blue floatleft" style="margin-left:10px;height:110px;">
+<div class="block blue" style="height:110px;margin-top:180px;">
 
 	<div class="title">...y en tu zona?</div>
 
-	<div class="text_right">
+	<div>
 		<form action="<?php echo base_url();?>/json/search" method="post" id="search">
-			<input type="text" id="text_search" name="text_search" /><br/>
+			<input type="text" id="text_search" name="text_search" />
 			<input type="submit" value="Buscar"/> 
 		</form>
 	</div> 
+	<div style="font-size:11px;">inserta y busca tu municipio</div>
 </div>
 </div>
 
-<div style="margin-top:20px;width:600px;">
-	<div class="block green">
-	
-		<div class="title">¿Dudas entre 2 sitios?</div>
-	
-		<div class="text_right">
-			<form action="" method="post">
-				<input type="text" /><br/>
-				<input type="submit" value="Buscar"/> 
-			</form>
-		</div> 
-	</div>
-	
-	
-	
-	<div class="block blue" style="margin-top:30px;">
-	
-		<div class="title">... y en tu zona?</div>
-	
-		<div class="text_right">
-			<form action="" method="post">
-				<input type="text" /><br/>
-				<input type="submit" value="Buscar"/> 
-			</form>
-		</div> 
-	</div>
-</div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<div class="block yellow" style="margin-top:30px;">
+	
+		<div class="title">El Ranking de municipios</div>
+
+		<div>
+		Aqui los municipios
+		</div>	
+
+	</div>
+
+	<div class="block">
+		<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FComo-est%25C3%25A1-el-panorama-Abredatos-2011%2F200848863284374&amp;width=880&amp;colorscheme=light&amp;show_faces=true&amp;stream=true&amp;header=true&amp;height=400" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:920px; height:400px;" allowTransparency="true"></iframe>
+	</div>
+
 </div>

@@ -25,9 +25,26 @@ class C extends MYController {
 		$data['datos_paro'] = $this->dato->get_datos($id, DATO_PARO);
 		$data['datos_contratos'] = $this->dato->get_datos($id, DATO_CONTRATOS);
 		
-		
+		if($data['localidad']->lat) {
+			$data['proximas']= $this->localidad->localidades_proximas($data['localidad']->lat, $data['localidad']->lng);
+		}
 		
 		$this->data['content_body'] = $this->load->view('detail', $data, true);
+	}
+	
+	
+	public function sobre() {
+	
+		$this->data['content_body'] = $this->load->view('sobre', null, true);
+	}
+	
+	public function locations($ccaa_id) {
+
+		$d['localidades'] = $this->localidad->get_localidades_ccaa($ccaa_id);
+		
+		$d['ccaa'] = $this->ccaa->get_ccaa_by_id($ccaa_id);
+		
+		$this->data['content_body'] = $this->load->view('locations', $d, true);
 	}
 }
 

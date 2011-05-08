@@ -7,12 +7,14 @@ class json extends MYController {
 	public function points($lat_ne=null, $lng_ne=null, $lat_sw=null, $lng_sw=null, $zoom=null)
 	{
 		if(!$zoom || !$lat_ne || !$lng_ne || !$lat_sw || !$lng_sw || $zoom<8) {
-			$points = $this->ccaa->get_ccaa('all');
+			$d['points'] = $this->ccaa->get_ccaa('all');
+			$d['entity'] = 'ccaa';
 		} else {
-			$points = $this->localidad->get_localidades($lat_ne, $lng_ne, $lat_sw, $lng_sw);
+			$d['points'] = $this->localidad->get_localidades($lat_ne, $lng_ne, $lat_sw, $lng_sw);
+			$d['entity'] = 'localidad';
 		}
 
-		$this->data['content_body'] = $this->load->view('json/points', array('points'=>$points), true);
+		$this->data['content_body'] = $this->load->view('json/points', $d, true);
 	}
 
 

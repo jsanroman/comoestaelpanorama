@@ -24,7 +24,9 @@ class C extends MYController {
 		$data['datos_paro'] = $this->dato->get_datos($id, DATO_PARO);
 		$data['datos_contratos'] = $this->dato->get_datos($id, DATO_CONTRATOS);
 		
-		$data['proximas']= $this->localidad->localidades_proximas($data['localidad']->lat, $data['localidad']->lng);
+		if($data['localidad']->lat) {
+			$data['proximas']= $this->localidad->localidades_proximas($data['localidad']->lat, $data['localidad']->lng);
+		}
 		
 		$this->data['content_body'] = $this->load->view('detail', $data, true);
 	}

@@ -86,14 +86,24 @@ a.pto:hover, a.pto1:hover, a.pto2:hover, a.pto3:hover   {
 }
 
 a.pto_1 {
-	background: #18AD22;
-
+	background: #61B233;
+	z-index: 999;
 }
 a.pto_2 {
-	background: #FF7D0C;
+	background: #EEDE32;
+	z-index: 9999;
 }
 a.pto_3 {
-	background: #F40400;
+	background: #EE953A;
+	z-index: 99999;
+}
+a.pto_4 {
+	background: #DE3D32;
+	z-index: 999999;
+}
+a.pto_5 {
+	background: #000000;
+	z-index: 9999999;
 }
 
 

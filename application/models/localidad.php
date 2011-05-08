@@ -34,7 +34,7 @@ class localidad extends generic_model {
 			FROM localidad l 
 			WHERE 	l.lat="" 
 			ORDER BY l.poblacion DESC 
-			LIMIT 50
+			LIMIT 100
 			';
 
 			log_message('debug',$query);
@@ -63,7 +63,6 @@ class localidad extends generic_model {
 			}
 //		}
 	}
-	
 	
 	
 	public function get_localidades_ccaa($ccaa_id) {
@@ -96,7 +95,7 @@ class localidad extends generic_model {
 
 //		$provincias = $this->provincia->get_provicias($lat_ne, $lng_ne, $lat_sw, $lng_sw);
 //		$provincias = $this->provincia->get_provicias(null, null, null, null);
-//		$this->update_geolocation($provincias);
+		$this->update_geolocation($provincias);
 		
 		
 		

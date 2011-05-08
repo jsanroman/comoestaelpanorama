@@ -95,6 +95,31 @@ class dato extends CI_Model {
 
 		return $data;
 	}
+
+	public function get_datos($localidad_id, $tipo_dato) {
+
+		$query = '
+		SELECT dato, mes, anho
+		FROM dato  
+		WHERE localidad_id='.$localidad_id.' and tipo_dato='.$tipo_dato.' and anho in (2010,2011) 
+		ORDER BY anho asc, mes asc';
+
+		log_message('debug','-------------------------------------------------------------------------------------------------------------------------');
+		log_message('debug','-------------------------------------------------------------------------------------------------------------------------');
+		log_message('debug',$query);
+		log_message('debug','-------------------------------------------------------------------------------------------------------------------------');
+		log_message('debug','-------------------------------------------------------------------------------------------------------------------------');
+
+
+		$Q = $this->db->query($query);
+
+		$data = $Q->result();
+
+		$Q->free_result();
+		
+		return $data;
+	}
+	
 	
 	public function insert_dato_auto($name, $mes, $anho, $dato, $tipo_dato){		
 		$array_name = split(' ',$name);//por si es nombre compuesto...

@@ -20,6 +20,12 @@ class C extends MYController {
 
 		$data['ofertas'] = $this->ofertas->get_ofertas($l->nombre);
 
+		
+		$data['datos_paro'] = $this->dato->get_datos($id, DATO_PARO);
+		$data['datos_contratos'] = $this->dato->get_datos($id, DATO_CONTRATOS);
+		
+		
+		
 		$this->data['content_body'] = $this->load->view('detail', $data, true);
 	}
 }

@@ -8,7 +8,71 @@
 
 <?php 
 print_r($localidad);
+
+$linea_paro = '';
+$eje_x_paro 	= '';
+$eje_y_paro		= '';
+$max_paro=0;
+$min_paro=null;
+foreach ($datos_paro as $d) {
+
+	$linea_paro .= $d->dato.',';
+	if($d->dato>$max_paro) {
+		$max_paro = $d->dato;
+	}
+
+	if($d->dato<$min_paro || $min_paro==null) {
+		$min_paro = $d->dato;
+	}
+
+	$eje_x_paro .= '|'.$d->mes.'('.$d->anho.')|';
+}
+$eje_y_paro = "|{$min_paro}|{$max_paro}";
+$linea_paro = substr($linea_paro,0,strlen($linea_paro)-1);
 ?>
+
+<img src="http://chart.apis.google.com/chart?chxl=
+0:<?php echo $eje_x_paro;?>
+1:%7C%7C
+2:<?php echo $eje_y_paro;?>&
+chxr=1,0,83.333&chxs=0,00AA00,14,0.5,l,676767&chxt=x,r,y&chs=900x250&cht=lc&chco=FF0000&
+chd=t:<?php echo $linea_paro;?>&
+chg=20,25&chls=4
+&chds=<?php echo $min_paro;?>,<?php echo $max_paro;?>"/>
+
+
+<?php
+$linea_contr = '';
+$eje_x_contr 	= '';
+$eje_y_contr		= '';
+$max_contr=0;
+$min_contr=null;
+foreach ($datos_contratos as $d) {
+
+	$linea_contr .= $d->dato.',';
+	if($d->dato>$max_contr) {
+		$max_contr = $d->dato;
+	}
+
+	if($d->dato<$min_contr || $min_contr==null) {
+		$min_contr = $d->dato;
+	}
+
+	$eje_x_contr .= '|'.$d->mes.'('.$d->anho.')|';
+}
+$eje_y_contr = "|{$min_contr}|{$max_contr}";
+$linea_contr = substr($linea_contr,0,strlen($linea_contr)-1);
+?>
+<img src="http://chart.apis.google.com/chart?chxl=
+0:<?php echo $eje_x_contr;?>
+1:%7C%7C
+2:<?php echo $eje_y_contr;?>&
+chxr=1,0,83.333&chxs=0,00AA00,14,0.5,l,676767&chxt=x,r,y&chs=900x250&cht=lc&chco=FF0000&
+chd=t:<?php echo $linea_contr;?>&
+chg=20,25&chls=4
+&chds=<?php echo $min_contr;?>,<?php echo $max_contr;?>"/>
+
+
 
 
 <?php 

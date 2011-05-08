@@ -141,57 +141,62 @@ var map = {
 
 	updatePoints : function(points) {
 
-		msg.on();
+		if (map.bounds == null || map.reloadPoints(map.bounds,map.map.getBounds())) {
 
-		map.deleteOverlays();
-
-		save_ne = new google.maps.LatLng(map.map.getBounds().getNorthEast().lat() + 0.3, map.map.getBounds().getNorthEast().lng() + 0.3); 
-		save_se = new google.maps.LatLng(map.map.getBounds().getSouthWest() .lat() - 0.3, map.map.getBounds().getSouthWest().lng() - 0.3);
-		map.bounds = new google.maps.LatLngBounds(save_se, save_ne);
-
-
-		$.ajax({
-			type: 'get',  
-			url: url_base+'/json/points/'+
-										map.bounds.getNorthEast().lat()+
-										'/'+map.bounds.getNorthEast().lng()+
-										'/'+map.bounds.getSouthWest().lat()+
-										'/'+map.bounds.getSouthWest().lng()+
-										'/'+map.map.getZoom(), 
-			success: function(data) {
-				try {
-					points = eval(data);
-
-					for(var i=0;i<points.length;i++) {
-
-//						alert('hay ptos:'+points[i].nombre);
-
-						var pos_marker = new google.maps.LatLng(points[i].lat, points[i].lng); 
-						var bounds = new google.maps.LatLngBounds(pos_marker, pos_marker);
-						map.overlays.push(new CircleOverlay(bounds, map.map, points[i])); 			
+			msg.on();
+	
+			map.deleteOverlays();
+	
+			save_ne = new google.maps.LatLng(map.map.getBounds().getNorthEast().lat() + 0.3, map.map.getBounds().getNorthEast().lng() + 0.3); 
+			save_se = new google.maps.LatLng(map.map.getBounds().getSouthWest() .lat() - 0.3, map.map.getBounds().getSouthWest().lng() - 0.3);
+			map.bounds = new google.maps.LatLngBounds(save_se, save_ne);
+	
+	
+			$.ajax({
+				type: 'get',  
+				url: url_base+'/json/points/'+
+											map.bounds.getNorthEast().lat()+
+											'/'+map.bounds.getNorthEast().lng()+
+											'/'+map.bounds.getSouthWest().lat()+
+											'/'+map.bounds.getSouthWest().lng()+
+											'/'+map.map.getZoom(), 
+				success: function(data) {
+					try {
+						points = eval(data);
+	
+						for(var i=0;i<points.length;i++) {
+	
+	//						alert('hay ptos:'+points[i].nombre);
+	
+							var pos_marker = new google.maps.LatLng(points[i].lat, points[i].lng); 
+							var bounds = new google.maps.LatLngBounds(pos_marker, pos_marker);
+							map.overlays.push(new CircleOverlay(bounds, map.map, points[i])); 			
+							msg.off();
+	
+						}
+					} catch (e) {
+						alert('no hay ptos');
 						msg.off();
-
 					}
-				} catch (e) {
-					alert('no hay ptos');
-					msg.off();
 				}
-			}
-		});	
+			});
+		}
 	},
 
 	reloadPoints : function(source_bounds, current_bounds) {
 
-		if (source_bounds == null || current_bounds == null) {
-			return true;
-		}
-
-		// Si el noroeste o el sureste del mapa actual no está contenido en el
-		// mapa anterior (mas el tamaño añadido) => volvemos a recargar todos
-		// los ptos
-		if (!source_bounds.contains(current_bounds.getNorthEast())
-				|| !source_bounds.contains(current_bounds.getSouthWest())) {
-			return true;
+		if(map.map.getZoom()>=8) {
+			if (source_bounds == null || current_bounds == null) {
+				return true;
+			}
+	
+			// Si el noroeste o el sureste del mapa actual no está contenido en el
+			// mapa anterior (mas el tamaño añadido) => volvemos a recargar todos
+			// los ptos
+			if (!source_bounds.contains(current_bounds.getNorthEast())
+					|| !source_bounds.contains(current_bounds.getSouthWest())) {
+				return true;
+			}
 		}
 		return false;
 	},

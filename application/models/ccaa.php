@@ -72,4 +72,20 @@ class ccaa extends generic_model {
 	public function get_id($name){
 		return $this->search_generic($name);
 	}
+	
+	
+	public function get_ccaa_by_id($id) {
+			$query = '
+			SELECT c.* 
+			FROM ccaa c 
+			WHERE id='.$id.' 
+			';
+
+//			log_message('debug',$query);
+
+			$Q = $this->db->query($query);
+			$ccaa = $Q->result();
+			$Q->free_result();
+			return $ccaa[0];
+	}
 }

@@ -34,6 +34,15 @@ class C extends MYController {
 	
 		$this->data['content_body'] = $this->load->view('sobre', null, true);
 	}
+	
+	public function locations($ccaa_id) {
+
+		$d['localidades'] = $this->localidad->get_localidades_ccaa($ccaa_id);
+		
+		$d['ccaa'] = $this->ccaa->get_ccaa_by_id($ccaa_id);
+		
+		$this->data['content_body'] = $this->load->view('locations', $d, true);
+	}
 }
 
 /* End of file c.php */

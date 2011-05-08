@@ -113,6 +113,11 @@ a.pto_3 {
 	margin-top:20px;
 }
 
+.title {
+	font-family: 'Annie Use Your Telescope', arial, serif;
+	font-size: 30px;
+}
+
 .subtitle {
 	text-align: right;
 }
@@ -215,6 +220,8 @@ a.link_proxima {
 	margin-right:30px;
 	color: #7b68f5;
 }
+
+
 
 .text_right {
 	text-align: right;

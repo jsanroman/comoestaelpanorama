@@ -66,6 +66,25 @@ class localidad extends generic_model {
 	
 	
 	
+	public function get_localidades_ccaa($ccaa_id) {
+
+			$query = '
+			SELECT l.* 
+			FROM localidad l 
+			LEFT JOIN provincia p ON p.id=l.provincia_id
+			WHERE p.ccaa_id='.$ccaa_id.' 
+			ORDER BY l.poblacion DESC 
+			';
+
+//			log_message('debug',$query);
+
+			$Q = $this->db->query($query);
+			$locations = $Q->result();
+			$Q->free_result();
+			return $locations;
+	}
+	
+	
 	public function get_localidades($lat_ne, $lng_ne, $lat_sw, $lng_sw) {
 
 
@@ -77,7 +96,7 @@ class localidad extends generic_model {
 
 //		$provincias = $this->provincia->get_provicias($lat_ne, $lng_ne, $lat_sw, $lng_sw);
 //		$provincias = $this->provincia->get_provicias(null, null, null, null);
-		$this->update_geolocation($provincias);
+//		$this->update_geolocation($provincias);
 		
 		
 		
@@ -164,6 +183,9 @@ class localidad extends generic_model {
 	
 	
 	public function localidades_proximas($lat, $lng) {
+		
+		$year  = $this->dato->get_year_last();
+		$month = $this->dato->get_month_last($year);
 		
 		$query = '
 		SELECT distinct l.*  

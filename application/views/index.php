@@ -2,6 +2,7 @@
 
 
 <div id="map_canvas"></div>
+<div style="margin-top:-30px;margin-bottom:20px;"><img src="<?php echo base_url();?>/images/leyenda1.png"/></div>
 
 <div class="block red floatleft" style="width:875px;margin:0px;">
 

@@ -114,8 +114,61 @@ chg=20,25&chls=4
 	}
 	?>
 	</table>
-	</div>
 </div>
+
+
+<div class="block blue">
+
+<!--http://twitter.com/home?status=ZARA%20-%20%20-%20http://www.zara.com/webapp/wcs/stores/servlet/product/es/es/zara-S2011/61164/325517-->
+<form action="http://twitter.com/home" target="_blank">
+<textarea style="width:850px;height:50px;" name="status">
+#empleo <?php echo '#'.$localidad->nombre?>
+</textarea>
+<input type="submit" value="Deja tu comentario" style="margin-left:647px;margin-bottom:10px;">
+</form>
+
+
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'search',
+  search: '#empleo #<?php echo $localidad->nombre;?>',
+  interval: 2000,
+  title: 'equipo aguamojada',
+  subject: 'abredatos 2011',
+  width: 875,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#8ec1da',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#444444',
+      links: '#1985b5'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: false,
+    live: false,
+    hashtags: true,
+    timestamp: true,
+    avatars: true,
+    toptweets: true,
+    behavior: 'default'
+  }
+}).render().start();
+</script>
+
+</div>
+
+</div>
+
+
+
 
 <script>
 function center_detail(){

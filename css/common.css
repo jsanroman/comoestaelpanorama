@@ -110,17 +110,28 @@ a.pto_3 {
 	border-radius: 5px;
 	padding: 10px;
 	background: #fff;
+	margin-top:20px;
 }
-	
+
+.subtitle {
+	text-align: right;
+}
+
 .red .title {
 	font-family: 'Annie Use Your Telescope', arial, serif;
 	font-size: 25px;
-	color: #D81111;
+	color: #c43240;
 	
 }
 
 .red{
-	border: 3px solid #D81111 !important;
+	border: 3px solid #c43240 !important;
+}
+
+.redtext{
+	color: #c43240;
+	font-size: 25px;
+	font-weight: bold;
 }
 
 .blue {
@@ -137,22 +148,72 @@ a.pto_3 {
 .blue input[type="text"] {
 	padding:6px;
 	font-size: 20px;
-	width: 290px;
+	width: 500px;
 	
 }
 .blue input[type="submit"] {
 	font-size:20px;
-	height:30px;
+	height:40px;
+	
 }
 
-
+.greentext{
+	color: #009444;
+	font-size: 25px;
+	font-weight: bold;
+}
 .green {
-	border: 3px solid #18AD22 !important;
+	border: 3px solid #009444 !important;
 }
 .green .title {
 	font-family: 'Annie Use Your Telescope', arial, serif;
 	font-size: 25px;
-	color: #18AD22;
+	color: #009444;
+}
+
+.yellow {
+	border: 3px solid #f7941e !important;
+}
+.yellow .title {
+	font-family: 'Annie Use Your Telescope', arial, serif;
+	font-size: 25px;
+	color: #f7941e;
+}
+
+.yellowtext{
+	color: #f7941e;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.morao {
+	border: 3px solid #7b68f5 !important;
+}
+.morao .title {
+	font-family: 'Annie Use Your Telescope', arial, serif;
+	font-size: 25px;
+	color: #7b68f5;
+}
+
+.moraotext{
+	color: #7b68f5;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+th {
+	text-align: left;
+}
+
+a.link_oferta {
+	display: block;
+	color: #f7941e;
+}
+
+a.link_proxima {
+	display: block;
+	margin-right:30px;
+	color: #7b68f5;
 }
 
 .text_right {

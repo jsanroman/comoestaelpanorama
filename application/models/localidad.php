@@ -161,4 +161,49 @@ class localidad extends generic_model {
 	public function get_parent_id($name){
 		return $this->get_generic_parent($name,'provincia');
 	}
+	
+	
+	public function localidades_proximas($lat, $lng) {
+		
+		$query = '
+		SELECT distinct l.*  
+		FROM localidad l 
+		ORDER BY (
+				 acos(sin(radians('.$lat.')) * sin(radians(l.lat)) +
+				 cos(radians('.$lat.')) * cos(radians(l.lat)) *
+				 cos(radians('.$lng.') - radians(l.lng))) * 6378
+				 )  asc 
+		LIMIT 10
+		';
+		
+		
+		$Q = $this->db->query($query);
+
+		$data = $Q->result();
+
+		$Q->free_result();
+
+		$retval = null;
+		
+		foreach ($data as $l) {
+			
+			$datos = $this->dato->get_dato($month, $year, $l->id, null);
+
+			foreach ($datos as $d) {
+				switch ($d->tipo_dato) {
+					case DATO_PARO:
+						$l->paro = $d->dato;
+						break;
+				}
+			}
+			
+			$l->ofertas = $this->ofertas->get_num_ofertas($l->id, null, $l->nombre);
+
+			$retval[] = $l;
+		}
+		
+		return $retval;
+		
+		
+	}
 }

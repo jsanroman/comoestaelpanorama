@@ -7,7 +7,8 @@ class C extends MYController {
 	{
 		$d['parados']   = $this->dato->get_parados_ahora();
 		$d['contratos'] = $this->dato->get_contratos_anho();
-		$d['ofertas'] 	= $this->ofertas->get_num_ofertas(null, null, 'España', DATO_OFERTAS_ESPANHA);
+		$d['ofertas'] 	= $this->ofertas->get_num_ofertas(null, null, 'España', DATO_OFERTAS_ESPANHA);		
+		$d['ranking'] = $this->rank->get_rank();
 		
 		$this->data['content_body'] = $this->load->view('index', $d, true);
 	}

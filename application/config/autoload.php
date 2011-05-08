@@ -57,7 +57,8 @@ $autoload['libraries'] = array(
 							'session',
 							'ParserXlsParadosContratos',
 							'ParserXLSpadron',
-							'ofertas');
+							'ofertas',
+							'rank');
 
 
 /*

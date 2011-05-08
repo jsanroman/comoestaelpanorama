@@ -184,4 +184,61 @@ class dato extends CI_Model {
 		$dato = $this->get_dato(null, $this->get_year_last(), null, null, DATO_CONTRATOS);
 		return $dato;
 	}
+	
+	public function get_paro_avg($localidad_id){
+		
+		$info = "(";
+		for ($i=1; $i<4;$i++){
+			$info .="d.mes=".date('n',date('U')-($i*30*24*60*60))." AND d.anho=".date('Y',date('U')-($i*30*24*60*60))." OR ";
+		}
+		$info = substr($info,0,-4).")";
+			
+		$query = "select d.localidad_id,  avg(d.dato) as media, tipo_dato from dato d  
+		where $info AND tipo_dato=1 AND localidad_id=$localidad_id";
+		$Q = $this->db->query($query);		
+
+		$data = $Q->result();
+
+		$Q->free_result();
+
+		return $data;
+	}
+	
+	public function get_paro_max($localidad_id){		
+			
+		$query = "select d.localidad_id, d.dato, tipo_dato from dato d  
+		where d.mes=".(date('n')-2)." AND d.anho=".(date('Y')-1)." AND tipo_dato=1 AND localidad_id=$localidad_id";
+		$Q = $this->db->query($query);		
+
+		$data = $Q->result();
+
+		$Q->free_result();
+
+		return $data;
+	}
+	
+	public function get_max($tipo){
+		$info = "AND (";
+		for ($i=1; $i<4;$i++){
+			$info .="d.mes=".date('n',date('U')-($i*30*24*60*60))." AND d.anho=".date('Y',date('U')-($i*30*24*60*60))." OR ";
+		}
+		$info = substr($info,0,-4).")";
+		$sum_avg='avg';
+		if ($tipo!=1 && $tipo!=2) {
+			$info='';
+			$sum_avg='sum';	
+		}
+		
+		$query = "select d.localidad_id, $sum_avg(d.dato) as dato,l.poblacion  from dato d,localidad l  
+		where l.id=d.localidad_id  
+		$info AND tipo_dato=$tipo AND ".date('U')."-d.timestamp < ".MILISECONDS_REGENERATE_JOBS."
+		group by localidad_id order by l.poblacion DESC LIMIT 10";
+		$Q = $this->db->query($query);		
+
+		$data = $Q->result();
+
+		$Q->free_result();
+
+		return $data;
+	}
 }

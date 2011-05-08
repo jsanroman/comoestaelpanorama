@@ -22,6 +22,9 @@ class ccaa extends generic_model {
 	}
 
 	public function get_ccaa() {
+		$year  = $this->dato->get_year_last();
+		$month = $this->dato->get_month_last($year);
+		
 		$ccaa = $this->get_generic('all');
 		$retval = null;
 		foreach ($ccaa as $ca) {

@@ -26,7 +26,7 @@
 
 	<div id="container">
 
-<div style="position:fixed;top:0px;left:100px;background:#000;color:#fff;z-index:99999;padding:10px;" id="msg"></div>
+<div style="position:fixed;top:0px;left:0px;right:0px;text-align:center;background:#000;color:#fff;z-index:99999;padding:10px;" id="msg"></div>
 		<div><?php echo flash_msg() ?></div>
 	
 		<?php echo $header; ?>

@@ -2,9 +2,11 @@ var msg = {
 
 	on : function() {
 		$('#msg').html("Actualizando...");
+		$('#msg').show();
 	},
 	off : function() {
 		$('#msg').html('');
+		$('#msg').hide();
 	}
 
 };

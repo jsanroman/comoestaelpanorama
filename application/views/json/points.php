@@ -16,6 +16,8 @@ foreach ($points as $p) {
 		$styleClass = 'pto_2';
 	}
 
+	$href='#';
+	if($entity=='localidad') $href='.base_url().'/c/detail/'.$p->id.';
 
 	$data_json .= '{nombre: "'.$p->nombre.'",
 				 lat:'.$p->lat.',
@@ -23,7 +25,7 @@ foreach ($points as $p) {
 				 paro:'.$p->paro.',
 				 ofertas:'.$p->ofertas.',
 				 styleClass:"'.$styleClass.'",
-				 href:"'.base_url().'/c/detail/'.$p->id.'"
+				 href:"'.$href.'"
 				},';
 }
 

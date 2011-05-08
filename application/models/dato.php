@@ -206,8 +206,8 @@ class dato extends CI_Model {
 	
 	public function get_paro_max($localidad_id){		
 			
-		$query = "select d.localidad_id, d.dato, tipo_dato from dato d  
-		where d.mes=".(date('n')-2)." AND d.anho=".(date('Y')-1)." AND tipo_dato=1 AND localidad_id=$localidad_id";
+		$query = "select d.localidad_id, d.dato, d.tipo_dato, l.nombre from dato d, localidad l  
+		where l.id=d.localidad_id  and d.mes=".(date('n')-2)." AND d.anho=".(date('Y')-1)." AND tipo_dato=1 AND localidad_id=$localidad_id";
 		$Q = $this->db->query($query);		
 
 		$data = $Q->result();
@@ -229,7 +229,7 @@ class dato extends CI_Model {
 			$sum_avg='sum';	
 		}
 		
-		$query = "select d.localidad_id, $sum_avg(d.dato) as dato,l.poblacion  from dato d,localidad l  
+		$query = "select d.localidad_id, $sum_avg(d.dato) as dato,l.poblacion, l.nombre  from dato d,localidad l  
 		where l.id=d.localidad_id  
 		$info AND tipo_dato=$tipo AND ".date('U')."-d.timestamp < ".MILISECONDS_REGENERATE_JOBS."
 		group by localidad_id order by l.poblacion DESC LIMIT 10";

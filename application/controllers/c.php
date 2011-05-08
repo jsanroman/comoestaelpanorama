@@ -8,7 +8,9 @@ class C extends MYController {
 		$d['parados']   = $this->dato->get_parados_ahora();
 		$d['contratos'] = $this->dato->get_contratos_anho();
 		$d['ofertas'] 	= $this->ofertas->get_num_ofertas(null, null, 'España', DATO_OFERTAS_ESPANHA);		
-		$d['ranking'] = $this->rank->get_rank();
+		$d['ranking'] = $this->rank->get_rank();	
+		$url = 	'http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'];
+		$d['user_pos'] = unserialize(file_get_contents($url));		
 		
 		$this->data['content_body'] = $this->load->view('index', $d, true);
 	}

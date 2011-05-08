@@ -28,6 +28,7 @@ class Rank {
 				$media = intval($datos->dato);															
 				if (intval($value->dato) < $media) {
 					$d['paro'][$value->localidad_id]['paro'] = intval($value->dato);
+					$d['paro'][$value->localidad_id]['nombre'] = $value->nombre;
 				}							
 		}				
 		
@@ -35,7 +36,8 @@ class Rank {
 			$datos = $this->ci->dato->get_paro_avg($value->localidad_id);
 			$datos=$datos[0];
 			$media = intval($datos->media);
-			$d['oferta'][$value->localidad_id]['ofertas_parados'] = $value->dato / $media;			
+			$d['oferta'][$value->localidad_id]['ofertas_parados'] = $value->dato / $media;
+			$d['oferta'][$value->localidad_id]['ofertas_parados'] = $value->nombre;			
 		}
 		
 		return $d;

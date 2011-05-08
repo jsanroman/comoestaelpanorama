@@ -95,7 +95,7 @@ class localidad extends generic_model {
 
 //		$provincias = $this->provincia->get_provicias($lat_ne, $lng_ne, $lat_sw, $lng_sw);
 //		$provincias = $this->provincia->get_provicias(null, null, null, null);
-		$this->update_geolocation($provincias);
+//		$this->update_geolocation($provincias);
 		
 		
 		

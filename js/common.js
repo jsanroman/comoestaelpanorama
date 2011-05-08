@@ -121,18 +121,14 @@ var map = {
 
 		this.map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-		this.map.fitBounds(new google.maps.LatLngBounds(new google.maps.LatLng(36.91860, -7.0844), new google.maps.LatLng(42.8172, -1.0044)));
-
-//		this.map.enableGoogleBar();
-//		this.map.addControl(new google.maps.LocalSearch());
-
 		google.maps.event.addDomListener(this.map, "zoom_changed", function() {map.bounds = null; });
 
 
-//		map.updatePoints();
-
-
-
+		try {
+			center_detail();
+		} catch(e) {
+			this.map.fitBounds(new google.maps.LatLngBounds(new google.maps.LatLng(36.91860, -7.0844), new google.maps.LatLng(42.8172, -1.0044)));
+		}
 
 		google.maps.event.addDomListener(this.map, "bounds_changed", function() {
 			if (map.bounds == null || map.reloadPoints(map.bounds,map.map.getBounds())) {

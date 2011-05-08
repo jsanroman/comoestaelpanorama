@@ -17,7 +17,7 @@ foreach ($points as $p) {
 	}
 
 	$href='#';
-	if($entity=='localidad') $href='.base_url().'/c/detail/'.$p->id.';
+	if($entity=='localidad') $href=base_url().'/c/detail/'.$p->id;
 
 	$data_json .= '{nombre: "'.$p->nombre.'",
 				 lat:'.$p->lat.',

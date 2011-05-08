@@ -100,6 +100,21 @@ foreach ($ofertas->jobs as $job) {
 //print_r($ofertas);
 ?>
 
-
-
 </div>
+
+<script>
+function center_detail(){
+
+<?php 
+if($localidad->lat && $localidad->lng) {
+	
+?>
+	map.map.setCenter(new google.maps.LatLng('<?php echo $localidad->lat;?>','<?php echo $localidad->lng;?>'));
+	map.map.setZoom(9);
+
+<?php 	
+}
+?>
+};
+</script>
+

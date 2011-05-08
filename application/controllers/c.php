@@ -28,6 +28,12 @@ class C extends MYController {
 		
 		$this->data['content_body'] = $this->load->view('detail', $data, true);
 	}
+	
+	
+	public function sobre() {
+	
+		$this->data['content_body'] = $this->load->view('sobre', null, true);
+	}
 }
 
 /* End of file c.php */

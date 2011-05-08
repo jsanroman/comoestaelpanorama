@@ -18,7 +18,7 @@ class C extends MYController {
 		$l = $this->localidad->get_localidad($id);
 		$data['localidad'] = $l[0];
 
-		$data['ofertas'] = $this->ofertas->get_ofertas($l->nombre);
+		$data['ofertas'] = $this->ofertas->get_ofertas($l[0]->nombre);
 
 		
 		$data['datos_paro'] = $this->dato->get_datos($id, DATO_PARO);

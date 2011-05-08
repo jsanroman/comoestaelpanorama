@@ -29,13 +29,13 @@
 
 	<div class="title">...y en tu zona?</div>
 
-	<div>
+	<div style="text-align:center;">
 		<form action="<?php echo base_url();?>/json/search" method="post" id="search">
 			<input type="text" id="text_search" name="text_search" value="<?php echo $user_pos['geoplugin_city']?>"/>
 			<input type="submit" value="Buscar"/> 
 		</form>
 	</div> 
-	<div style="font-size:11px;">inserta y busca tu municipio</div>
+	<div style="font-size:11px;margin-left:140px;">Escribe el nombre de un municipio</div>
 </div>
 
 	<table width="900">

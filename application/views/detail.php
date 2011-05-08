@@ -92,9 +92,6 @@ chg=20,25&chls=4
 	<div class="subtitle">Actualmente <span class="yellowtext"><?php echo number_format($ofertas->hits,0,'','.');?></span> ofertas en <strong><?php echo $localidad->nombre;?></strong></div>
 	
 	<?php 
-	
-	echo 'Actualmente '.$ofertas->hits.' ofertas en '.$localidad->nombre;
-	
 	foreach ($ofertas->jobs as $job) {
 		echo '<a href="'.$job->url.'" class="link_oferta">'.$job->title.'</a>';
 	}

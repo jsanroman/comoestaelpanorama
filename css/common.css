@@ -80,6 +80,11 @@ a.pto {
 	text-decoration: none;
 }
 
+a.pto:hover, a.pto1:hover, a.pto2:hover, a.pto3:hover   {
+	background: #ccc;
+	color: #000;
+}
+
 a.pto_1 {
 	background: #18AD22;
 

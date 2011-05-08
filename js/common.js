@@ -32,9 +32,10 @@ CircleOverlay.prototype.onAdd = function() {
 //	alert(this.point_.paro);
 	
 	
-	a.innerHTML = "P:"+this.point_.paro+"<br/>O:"+this.point_.ofertas;
+	a.innerHTML = this.point_.nombre.substr(0,3)+"<br/>P:"+this.point_.paro+"<br/>O:"+this.point_.ofertas;
 	a.href = this.point_.href;
 	a.className = 'pto '+this.point_.styleClass;
+	a.title=this.point_.nombre;
 	a = CircleOverlay.update_attributes_a(a, 20, width, this.getMap().getZoom());
 
 	this.width_ = width;
@@ -88,16 +89,16 @@ CircleOverlay.prototype.onRemove = function() {
 };
 CircleOverlay.update_attributes_a = function(a, fontSize, size, zoom) {
 
-	size_p = a.innerHTML.length;
+	size_p = a.innerHTML.length-3;
 	size = size_p * 2.5 * (zoom * 0.15);
 	a.size = size;
 
 	this.width_ = size;
 	
 	a.style.width = size + "px";
-	a.style.height = (size / 3) * 2 + "px";
+	a.style.height = (size / 6) * 5 + "px";
 
-	a.style.paddingTop = size / 3 + "px";
+	a.style.paddingTop = size / 6 + "px";
 
 	a.style.fontSize = (size_p * (zoom * 0.08)) + 'px';
 
@@ -172,6 +173,8 @@ var map = {
 							msg.off();
 	
 						}
+//					    $('.pto').tipsy({gravity: 'n'});
+
 					} catch (e) {
 						alert('no hay ptos');
 						msg.off();
@@ -273,4 +276,6 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	
+    $('.pto').tipsy({gravity: 'n'});
 });

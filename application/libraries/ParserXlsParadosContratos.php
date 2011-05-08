@@ -53,7 +53,7 @@ class ParserXlsParadosContratos {
 				$year = substr($link, -6,2);
 				
 				$data = new Spreadsheet_Excel_Reader($file_name); 
-				for ($i=9;$i < $data->rowcount();$i++){
+				for ($i=9;$i < $data->rowcount()-3;$i++){
 					$localidad = $this->normalize($data->val($i,'B'));
 					$contratos = $this->normalize($data->val($i,'C'));	
 					$paro = $this->normalize($data->val($i,'C',1));

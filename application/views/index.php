@@ -59,6 +59,19 @@
 			</td>
 		</tr>		
 	</table>
+
+<div style="margin-top:40px;font-size:12px;">
+<div class="title">Es importante que sepas...</div>
+<p>Este proyecto ha sido desarrollado en solo 48 horas para participar en el desafio <a href="http://www.abredatos.es" target="_blank">abredatos 2011</a> celebrado los días 7 y 8 de mayo.</p>
+<p>La valoración que ves en los colores del mapa se basa en la relación del número de parados y ofertas de empleo en cada sitio.</p>
+<p>El número de ofertas es orientativo. Lo hemos obtenido de <a href="http://opcionempleo.com" target="_blank">opcionempleo.com</a> puesto que ningún organismo oficial tenía un número de ofertas suficiente como para poder desarrollar este proyecto.</p>
+<p>El número de parados y nuevos contratos lo obtenemos de <a href="https://www.redtrabaja.es/es/redtrabaja/static/Redirect.do?page=statsMunicipios" target="_blank">https://www.redtrabaja.es/es/redtrabaja/static/Redirect.do?page=statsMunicipios</a>.</p>
+<p>Mas info de este proyecto en <a href="<?php echo base_url()?>c/sobre">Sobre el proyecto</a></p>
+
+<a href="http://www.twitter.com/comostapanorama"><img src="http://twitter-badges.s3.amazonaws.com/t_logo-a.png" alt="Follow comostapanorama on Twitter"/></a>
+<!-- Facebook Badge START --><a href="http://www.facebook.com/pages/Como-est%C3%A1-el-panorama-Abredatos-2011/200848863284374" target="_TOP" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="Como está el panorama - Abredatos 2011">Como está el panorama - Abredatos 2011</a><span style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; line-height: 16px; font-variant: normal; font-style: normal; font-weight: normal; color: #555555; text-decoration: none;">&nbsp;|&nbsp;</span><a href="http://www.facebook.com/business/dashboard/" target="_TOP" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="Crea tu propia insignia">Promocionar tu página también</a><br/><a href="http://www.facebook.com/pages/Como-est%C3%A1-el-panorama-Abredatos-2011/200848863284374" target="_TOP" title="Como está el panorama - Abredatos 2011"><img src="http://badge.facebook.com/badge/200848863284374.1639.2076605815.png" width="126" height="84" style="border: 0px;" /></a><!-- Facebook Badge END -->
+
+</div>
 	</div>
 </div>
 

@@ -70,4 +70,6 @@ class Ofertas {
 			return $result;
 		}
 	}
+	
+	
 }

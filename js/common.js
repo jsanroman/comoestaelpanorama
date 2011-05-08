@@ -96,9 +96,9 @@ CircleOverlay.update_attributes_a = function(a, fontSize, size, zoom) {
 	this.width_ = size;
 	
 	a.style.width = size + "px";
-	a.style.height = (size / 6) * 5 + "px";
+	a.style.height = (size / 15) * 14 + "px";
 
-	a.style.paddingTop = size / 6 + "px";
+	a.style.paddingTop = size / 15 + "px";
 
 	a.style.fontSize = (size_p * (zoom * 0.08)) + 'px';
 
